@@ -9,7 +9,11 @@ const app = http.createServer((req, res) => {
   // write the response
   fs.readFile('../example.txt', (err, data) => {
     if (err) {
-      return JSON.stringify(err);
+      res.writeHead(400, {
+        'Content-Type': 'json/application',
+      });
+
+      return res.end(JSON.stringify(err));
     }
 
     // writing the status code and headers
@@ -17,7 +21,7 @@ const app = http.createServer((req, res) => {
       'Content-Type': 'text/plain',
     });
 
-    res.end(data.toString());
+    return res.end(data.toString());
   });
 });
 
