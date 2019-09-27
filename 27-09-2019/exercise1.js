@@ -4,8 +4,7 @@ const fs = require('fs')
 
 
 let app = http.createServer((req, res) => {
-  let text = fs.readFile('../example.txt', 'utf8', (req, res) => {
-  });
+  let text = fs.readFile('../example.txt', 'utf8')
   res.writeHead(200, {'Content-Type': 'text/plain'}); // object with headers
   res.end(JSON.stringify(text))
 });
