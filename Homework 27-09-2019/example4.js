@@ -12,7 +12,6 @@ const server = http.createServer((request, response) => {
       for (let i in toJson["web-app"].taglib) {
         counter++;
       }
-      console.log(counter / 2);
       do {
         toJson["web-app"].taglib[`request${counter - 1}`] = `request${counter -
           1}`;
@@ -20,7 +19,6 @@ const server = http.createServer((request, response) => {
       } while (toJson["web-app"].taglib == !undefined);
       {
       }
-      // console.log(JSON.stringify(toJson['web-app'].taglib));
       bufferFile = JSON.stringify(toJson);
       fs.writeFile("../readable.json", bufferFile, (err, data) => {
         if (err) {

@@ -17,3 +17,4 @@ const server = http.createServer((request, response) => {
 });
 
 server.listen(3000, '127.0.0.1');
+console.log('Server listen');
