@@ -10,7 +10,7 @@ const app = http.createServer((req, res) => {
         const streaming = fs.createReadStream('../HARINA.mp4');
         filesize = stats.size;
 
-        res.writeHead(200, { 'content-type': 'video/mp4', 'content-length': 'filesize'});
+        res.writeHead(200, { 'content-type': 'video/mp4', 'content-length': filesize});
         streaming.pipe(res);
     });
 });
