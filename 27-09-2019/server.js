@@ -7,8 +7,6 @@ let app = http.createServer((req, res) => {
         if (err) {
             console.log(err);
         }
-        console.log(data);
-        
         res.end(data);
     })
 });
