@@ -8,15 +8,13 @@ const app = http.createServer((req, res) => {
   if (req.method === 'GET') {
     // read db.json
     fs.readFile('./db.json', (err, data) => {
-      if (err) {
+      // file does not exits
+      if (err && err.code === 'ENOENT') {
         res.writeHead(400, {
           'Content-Type': 'text/plain',
         });
 
-        // if file does not exits
-        if (err.code === 'ENOENT') {
-          res.end('The file "db.json" does not exist.');
-        }
+        res.end('The file "db.json" does not exist.');
       }
 
       // file is empty
@@ -24,13 +22,14 @@ const app = http.createServer((req, res) => {
         res.writeHead(400, {
           'Content-Type': 'text/plain',
         });
-        
+
         res.end('The file "db.json" is empty.');
       }
 
       res.writeHead(200, {
         'Content-Type': 'application/json',
       });
+      
       res.end(data.toString());
     });
   }
