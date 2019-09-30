@@ -15,6 +15,8 @@ const app = http.createServer((req, res) => {
         });
 
         res.end('The file "db.json" does not exist.');
+        
+        return;
       }
 
       // file is empty
@@ -24,12 +26,14 @@ const app = http.createServer((req, res) => {
         });
 
         res.end('The file "db.json" is empty.');
+
+        return;
       }
 
       res.writeHead(200, {
         'Content-Type': 'application/json',
       });
-      
+
       res.end(data.toString());
     });
   }
