@@ -14,7 +14,7 @@ const app = new http.createServer((req, res)=>{
             res.end('el archivo no existe o está vacío');
         }
         else{
-        res.writeHead(200, {'Content-Type': 'aplication/json'});
+        res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(data);
         }
 
