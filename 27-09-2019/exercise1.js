@@ -6,7 +6,7 @@ const fs = require("fs");
 //create a instance of the http server to handle http request
 let app = http.createServer((req, res) => {
   res.writeHead(200, { "Content-type": "text/plain" });
-  fs.readFile("./example.txt", (data) => {
+  fs.readFile("../example.txt", (data) => {
     res.end(data);
   });
 });
