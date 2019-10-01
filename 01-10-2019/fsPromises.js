@@ -1,13 +1,16 @@
 const fs = require('fs');
 
-const readFile = new Promise((resolve, reject) => {
-  fs.readFile('./db.json', (err, data) => {
-    if (err && err.code === 'ENOENT') {
-      reject('File does not exist');
-    }
+// function that returns a promise
+function readFile(path) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(path, (err, data) => {
+      if (err) {
+        reject(err);
+      }
 
-    resolve(data);
+      resolve(data);
+    });
   });
-});
+} 
 
 module.exports = readFile;

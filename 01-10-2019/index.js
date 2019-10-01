@@ -20,12 +20,16 @@ function setResponse(res, headers, status, data) {
 
 // set routes and methods to listen
 app.get('/', (req, res) => {
-  readFile
+  readFile('./db.json')
     .then((data) => {
       setResponse(res, { 'Content-Type': 'application/json' }, 200, data);
     })
     .catch((err) => {
-      setResponse(res, { 'Content-Type': 'application/json' }, 404, err);
+      if (err.code === 'ENOENT') {
+        setResponse(res, { 'Content-Type': 'application/json' }, 404, 'File does not exist');
+      } else {
+        setResponse(res, { 'Content-Type': 'application/json' }, 400, err);
+      }
     });
 });
 
