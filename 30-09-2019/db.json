@@ -1,0 +1,22 @@
+[
+    {
+        "serverClients": [
+            {
+                "userId": "0001",
+                "info": {
+                    "name": "Erick",
+                    "age": 27,
+                    "hobbies": "Learn, code, read, music, beer."
+                }
+            },
+            {
+                "userId": "0002",
+                "info": {
+                    "name": "newUser",
+                    "age": 21,
+                    "hobbies": "painting, cooking, creating"
+                }
+            }
+        ]
+    }
+]
