@@ -19,7 +19,12 @@ app.get('/', (req, res) => {
           res.set('Content-Type', 'text/plain');
           res.status(400).send('Unexpected error');
         } else {
-          res.set('Content-Type', 'application/json').send(data);
+          if (data.length == 0) {
+            res.set('Content-Type', 'text/plain')
+            res.send('db.js file is empty')
+          } else {
+            res.set('Content-Type', 'application/json').send(data);
+          }
         }
       })
     }
