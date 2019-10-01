@@ -1,0 +1,29 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "NodeJS class. Using express.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BTS-Interns-2019/internship_nodeJS.git"
+  },
+  "keywords": [
+    "NodeJS",
+    "express",
+    "bodyparser"
+  ],
+  "author": "Erick Israel Vazquez Neri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BTS-Interns-2019/internship_nodeJS/issues"
+  },
+  "homepage": "https://github.com/BTS-Interns-2019/internship_nodeJS#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "fs": "0.0.1-security"
+  }
+}

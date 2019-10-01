@@ -8,7 +8,7 @@ Http.createServer( (req, res) => {
   let dbAccess = []
 
   if( req.method !== 'POST'){
-    res.writeHead(401, {"Content-Type": "text/plain"})
+    res.writeHead(404, {"Content-Type": "text/plain"})
     res.end('Forbidden action')
   }; 
   
@@ -26,18 +26,19 @@ Http.createServer( (req, res) => {
         if (user.userId == newUser.userId){
           res.writeHead(404, {"Content-Type": "text/plain"})
           res.end('User already exist')
+          return;
         } 
       });
       
       dbAccess[0].serverClients.push(newUser)
   
+      console.log(dbAccess)
       dbAccess = Buffer.from( JSON.stringify(dbAccess) )
-          
+      
       fs.writeFile('db.json', dbAccess, () => {
         console.log('Database updated.')
-        res.writeHead(201, {"Content-Type": "text/plain"},
-                            {"Content-Type": "application/json"})
-        res.end('User registered\n', newUser);
+        res.writeHead(201, {"Content-Type": "application/json"})
+        res.end('User registered\n' + newUser);
       })
     })
   })
