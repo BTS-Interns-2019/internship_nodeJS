@@ -1,0 +1,23 @@
+[
+    {
+        "id":"20",
+        "country":"spain",
+        "capital":"madrid",
+        "language":"spanish",
+        "continent":"europe"
+    },
+    {
+        "id":"12",
+        "country":"china",
+        "capital":"beijing",
+        "language":"chinese",
+        "continent":"asia"
+    },
+    {
+        "id":"146",
+        "country":"tuvalu",
+        "capital":"funafuti",
+        "language":"english",
+        "continent":"oceania"
+    }
+]
