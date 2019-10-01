@@ -5,7 +5,7 @@ const fs = require('fs');
 //Create an instance of the http server to handle HTTP requests
 let app = http.createServer ((req, res) => {
 
-    fs.readFile('./example.txt', 'utf8' , (err, data) => {
+    fs.readFile('../example.txt', 'utf8' , (err, data) => {
         if(err){
             throw Error;
         }
