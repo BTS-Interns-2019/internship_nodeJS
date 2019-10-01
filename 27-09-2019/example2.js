@@ -6,7 +6,7 @@ let app = http.createServer((req, res) => {
         if (err) {
             throw Error;
         }
-        res.writeHead(200, {'Content-Type': 'text/json'});
+        res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(data);
     });
 
