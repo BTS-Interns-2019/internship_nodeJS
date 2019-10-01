@@ -6,18 +6,27 @@ let cont = 0;
 
 let app = http.createServer(function(req, res){
 
-   const promise = new Promise ((resove, reject) =>{
+   const promise = new Promise ((resolve, reject) =>{
+
     fs.readFile('../readable.json','utf-8', (err, data)=>{
+
         if(err){ reject(err)};
+
         res.writeHead(200, {'Content-type': 'aplication/json'});
         const obtFile = JSON.parse(data);
+        
+
         for( let i in obtFile['web-app'].taglib){
-            cont+=1;
+            cont++;
+            console.log(cont)
         }
-        do{
-            obtFile['web-app'].taglib['request'+cont-1] = 'request'+cont-1;
+
+            obtFile['web-app'].taglib[`request${cont-1}`] = `request${cont-1}`;
+            console.log(`request${cont-1}`)
             cont = 0;
-        } while (obtFile['web-app'].taglib != undefined)
+
+        
+
         fs.writeFile('../readable.json', JSON.stringify(obtFile), (err, data)=>{
             if(err){console.log(err)}
         });
