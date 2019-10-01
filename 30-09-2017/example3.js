@@ -19,8 +19,9 @@ const app = http.createServer((req, res) => {
 
             data = JSON.parse(data);
             body = JSON.parse(body);
-            if (data.hasOwnProperty(Object.values(body))) {   
+            if (data.hasOwnProperty(Object.keys(body))) {   
                     data[Object.keys(body)] = Object.values(body)[0];
+                    console.log(data);
 
             fs.writeFile('./db.json', JSON.stringify(data), (err) => {
                 if (err) {

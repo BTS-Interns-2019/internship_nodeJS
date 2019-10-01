@@ -20,7 +20,7 @@ const app = http.createServer((req, res) => {
             data = JSON.parse(data);
             body = JSON.parse(body);
             if (Object.values(data).length > 0) {  
-                if (data.hasOwnProperty(Object.keys(body))) {
+                if (data.hasOwnProperty(Object.keys(body)) && Object.values(body)[0] === 'true') {
                     delete data[Object.keys(body)];
                 } 
 
