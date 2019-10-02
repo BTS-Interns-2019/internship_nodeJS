@@ -4,7 +4,8 @@ const mysql = require ('mysql');
 var serverConnection = mysql.createPool({
     host : 'localhost',
     port : 3306,
-    user : 'password',
+    user : 'root',
+    password : 'password',
     database : 'futbol'
 
 })
