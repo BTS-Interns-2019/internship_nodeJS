@@ -28,10 +28,12 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) =>{
 
-    postUser(req.body);
-})
+    postUser(req.body).then((data)=>{
+        res.set('content-Type', 'text/plain');
+        res.send(data);
+    });
 
-
+});
 
 
 app.listen(port, () => {
