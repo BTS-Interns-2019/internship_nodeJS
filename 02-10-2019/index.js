@@ -2,7 +2,8 @@
 
 const {
     getFirstStudent,
-    postStudent, } = require ('./studentsDB.js');
+    postStudent,
+    getStudents } = require ('./studentsDB.js');
 const express = require('express');
 
 const app = express();
@@ -39,7 +40,7 @@ app.get('/', (req, res) => {
 app.post('/', (req, res) => {
     postStudent ()
     .then((record) => {
-         getFirstStudent ()
+         getStudents ()
     .then ((record) => {
        res.set('content-type', 'application/json');
        res.send(record);

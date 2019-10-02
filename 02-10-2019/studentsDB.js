@@ -20,8 +20,26 @@ function getFirstStudent() {
     });
 };
 
+function getStudents() {
+    return new Promise((resolve, reject) => {
+        pool.getConnection(function (err, connection) {
+            if (err) {
+                reject('DB connection error');
+            };
+            connection.query('SELECT * FROM students', function (error, results, fields) {
+            connection.release();
+
+                if (error) {
+                    throw error;
+                };
+                resolve(results);
+            });
+        });
+    });
+};
+
 function postStudent () {
-    const post = {id: 6, first_name: 'Edgar', last_name: 'Peregrino'};
+    const post = {first_name: 'David', last_name: 'Peregrino'};
     return new Promise ((resolve, reject) => {
         pool.getConnection(function (err, connection) {
             if (err) {
@@ -42,4 +60,5 @@ function postStudent () {
 module.exports = { 
     getFirstStudent,
     postStudent,
+    getStudents,
 };
