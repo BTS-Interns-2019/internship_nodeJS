@@ -9,7 +9,7 @@ function addUser(user) {
                 reject('DB connection error')
             }
             bcrypt
-                .hash(user.pasword, 5)
+                .hash(user.password, 5)
                 .then(res => {
                     user.password = res
                     connection.query(`INSERT INTO user (email,password) values ('${user.email}','${user.password}')`, function (error, results, fields) {
