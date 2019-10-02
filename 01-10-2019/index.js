@@ -13,10 +13,9 @@ app.use(bodyParser.urlencoded({ extended: false })); //indicamos que debe tratar
 app.use(bodyParser.json());
 
 //set the routes and methods to listen
+//GET
 app.get("/", (req, res) => {
-  //le pasas variable foo lo toma con la ruta que le pasemos en el postman
-
-  fs.stat("db.json", function(err, stat) {
+  fs.stat("db.json", function(err, data) {
     if (err) {
       res.status(404);
       res.send("El archivo no fue encontrado");
@@ -31,6 +30,50 @@ app.get("/", (req, res) => {
   });
 });
 
+//POST
+
+app.post("/", (req, res) => {
+  fs.stat("db.json", function(err, data) {
+    if (err) {
+      res.status(404);
+      res.send("El archivo no fue encontrado");
+    } else {
+      fs.writeFile("db.json", JSON.stringify(req.body), (err) => {
+        res.set("Content-Type", "application/json");
+        res.status(200);
+        res.send(data);
+        console.log(req.body);
+      });
+    }
+  });
+});
+
+
+//PUT
+
+app.put("/", (req, res) => {
+  fs.stat("db.json", function(err, data) {
+    if (err) {
+      res.status(404);
+      res.send("El archivo no fue encontrado");
+    } else {
+      fs.writeFile("db.json", JSON.stringify(req.body), (err) => {
+        res.set("Content-Type", "application/json");
+        res.status(200);
+        res.send(data);
+        console.log(req.body);
+      });
+    }
+  });
+});
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
+
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}!`);
+});
+
+
