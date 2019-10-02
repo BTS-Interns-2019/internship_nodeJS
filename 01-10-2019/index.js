@@ -1,4 +1,5 @@
 'use strict';
+const leer = require('./leer');
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -13,20 +14,17 @@ app.use(bodyParser.urlencoded({extended:false}));
 app.use(bodyParser.json());
 
 app.get('/',(req,res)=>{
-    fs.readFile('db.json', 'utf8', (err,data)=>{
-        if(err){
-            res.status(404);
-            res.send("No existe el archivo Json");
-            // return;
+    leer().then((obj)=>{
+        if(!obj){
+            res.set("content-type", "text/plain");
+            res.send("bd.json vacío");
         }else{
-            if(!data){
-                res.set("content-type", "text/plain");
-                res.send("bd.json vacío");
-            }else{
-                res.set("content-type", "aplication/json");
-                res.send(data);
-            }
+            res.set("content-type", "aplication/json");
+            res.send(obj);
         }
+    }).catch((e)=>{
+        res.status(400);
+        res.send("Error: " + e);
     });
 });
 
@@ -81,15 +79,6 @@ app.post('/',(req, res)=>{
         });
     }
 });
-// let read = new Promise((rej, res)=>{
-//     fs.readFile("db.json", (err, data)=>{
-//         if(err){
-//             rej();
-//         }else{
-//             res(JSON.parse(data));
-//         }
-//     });
-// });
 app.put('/',(req, res)=>{
     let body = req.body;
     leer().then((obj)=>{
@@ -135,20 +124,11 @@ app.put('/',(req, res)=>{
     .catch((a)=>{
         res.set("content-type","text/palin");
         res.status(404);
-        res.send("File db.json not found" + a);
+        res.send("Error: " + a);
     });
 });
-function leer(){
-    return new Promise((resolve, reject)=>{
-        fs.readFile("db.json", (err, data)=>{
-            if(err){
-                reject(err);
-            }else{
-                resolve(JSON.parse(data));
-            }
-        });
-    })
-}
+
+
 app.delete('/',(req,res)=>{
     let body = req.body;
     leer().then((obj)=>{
@@ -189,38 +169,14 @@ app.delete('/',(req,res)=>{
                 res.send("Property not found");
             }
         }
-        
     })
     .catch((a)=>{
         res.set("content-type","text/palin");
-        res.status(404);
-        res.send("File db.json not found" + a);
+        res.status(400);
+        res.send("Error: " + a);
     });
 });
 
 app.listen(port, ()=>{
     console.log(`Example app listening on port ${port}!`);
 });
-
-//solo con get
-// app.get('/', (req,res)=>{
-//     //header mal
-//     // res.writeHead(200, {"content-type":"text/plain"});
-//     //header bien
-//     res.set("content-type", "aplication/json");
-//     res.status(200);
-//     res.send({});
-// });
-
-// app.post('/', (req,res)=>{
-//     console.log(req.body);
-//     res.set("content-type", "aplication/json");
-//     res.status(200);
-//     res.send(req.body);
-// });
-
-//parametros
-// app.get('/:uno/paht/:variable', (req,res)=>{
-//     console.log(req.params);
-//     res.send('Hello world!');
-// });
