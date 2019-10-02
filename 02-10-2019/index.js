@@ -17,15 +17,28 @@ app.get('/', (req, res) => {
   .then((record) => {
     res.set('Content-Type', 'application/json');
     res.send(record);
+  })
+  .catch((err) => {
+    res.set('Content-Type', 'text/plain');
+    res.send(err);
   });
 });
 
 app.post('/', (req, res) => {
   create(req.body)
-  .then((record) => {
-    console.log(record);
-    res.set('Content-Type', 'application/json');
-    res.send(record);
+  .then(() => {
+    dog()
+    .then((record) => {
+      res.set('Content-Type', 'application/json');
+      res.send(record);
+    })
+    .catch((err) => {
+      res.set('Content-Type', 'text/plain');
+      res.send(err);
+    });
+  }).catch((error) => {
+    res.set('Content-Type', 'text/plain');
+    res.send(error);
   });
 });
 

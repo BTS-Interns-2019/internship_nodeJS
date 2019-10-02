@@ -8,7 +8,7 @@ function getDogs() {
       if(err) { rejected('DB Connection error'); } // not connected!
 
       // Use the connection to execute a query
-      connection.query('SELECT * FROM dogs', (error, results, fields) => {
+      connection.query('SELECT * FROM dogs;', (error, results, fields) => {
 
         // When done with the connection, release it
         connection.release();

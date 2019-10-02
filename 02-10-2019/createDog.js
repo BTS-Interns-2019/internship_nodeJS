@@ -4,23 +4,30 @@ const db = require ('./db');
 
 function createDog(body) {
   return new Promise((resolve, reject) => {
-    // db.getConnection((err, connection) => {
-    //   if(err) { rejected('DB Connection error'); } // not connected!
+    db.getConnection((err, connection) => {
+      if(err) { reject('DB Connection error'); } // not connected!
 
-    //   // Use the connection to execute a query
-    //   // connection.query('INSERT INTO dogs ()', (error, results, fields) => {
+      const keys = Object.keys(body).join(', '); 
+      const values = Object.values(body).map((item) => {
+        if(typeof item === 'string'){
+          return `"${item}"`;
+        }
+        return item;
+      }).join(', ');
+      const insert = `INSERT INTO dogs (${keys}) VALUES (${values})`;
 
-    //     // When done with the connection, release it
-    //     // connection.release();
+      // Use the connection to execute a query
+      connection.query(insert, (error, results, fields) => {
+        // When done with the connection, release it
+        connection.release();
 
-    //     // Handle error after the release
-    //     // if(err) { throw err }
+        // Handle error after the release
+        if(error) { reject(error.message); }
 
-    //     // resolve the promise
-    //     resolve(req.body);
-    // });
-    console.log(body);
-    resolve(body);
+        // resolve the promise
+        resolve();
+      });
+    });
   });
 }
 
