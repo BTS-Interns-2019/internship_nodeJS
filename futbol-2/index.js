@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json());
 
 app.post('/login', (req, res) => {
-    login()
+    login(req.body)
     .then((data)=>{
         res.set('Content-Type','application/json');
         res.status(200);
@@ -20,7 +20,7 @@ app.post('/login', (req, res) => {
 })
 
 app.post('/signUp', (req, res)=>{
-    signUp()
+    signUp(req.body)
     .then((data)=>{
         res.set('Content-Type', 'application/json');
         res.status(200);
