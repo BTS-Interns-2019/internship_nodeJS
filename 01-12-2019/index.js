@@ -12,11 +12,19 @@ app.use( bodyParser.json() ); // key:value config parsed to JSON
 
 app.get('/', (req, res) => {
 
+  fs.exists('../30-09-2019/db.json', (exists) => {
+    console.log(exists)
+    if(!exists){
+      res.status(404).send('404 Not Found')
+      return;
+    }
+  });
+
   fs.readFile('../30-09-2019/db.json', (err, data) => {
     //File doesn't exist
     if(err){
       res.writeHead(400,{"Content-Type": "text/plain"});
-      res.end('File not found');
+      res.end('Oop! Something went wrong, try again.');
     }; 
     // File exist.
     if(data.toString() === ''){

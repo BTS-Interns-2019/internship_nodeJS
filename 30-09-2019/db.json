@@ -1,11 +1,1 @@
-{
-  "serverClients":[
-    { "userId": 1,
-      "info": {
-        "name":"Erick",
-        "age": 27,
-        "hobbies": "Learn, code, read, music, beer."
-      }
-    }
-  ]
-}
+{"serverClients":[{"userId":1,"info":{"name":"Erick Israel Vazquez Neri","age":27,"hobbies":"Learn, code, read, music, beer."}},{"userId":2,"info":{"name":"Ana Nazaret","age":21,"hobbies":"Painting, cooking, learning, spiders"}},{"userId":3,"info":{"name":"Arun Junnueth","age":3,"hobbies":"Learning, playing, laughing, painting"}},{"userId":4,"info":{"name":"Algren Jacob","age":"5 months","hobbies":"Eating, looking, pooping, laughing"}},{"userId":5,"info":{"name":"newUser","age":99,"hobbies":"Testing user 001"}},{"userId":6,"info":{"name":"newUser","age":99,"hobbies":"Testing user 002"}},{"userId":7,"info":{"name":"newUser","age":99,"hobbies":"Testing user 003"}}]}

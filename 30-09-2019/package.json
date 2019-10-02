@@ -1,0 +1,23 @@
+{
+  "name": "30-09-2019",
+  "version": "1.0.0",
+  "description": "Using http server",
+  "main": "example1.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BTS-Interns-2019/internship_nodeJS.git"
+  },
+  "author": "Erick Israel Vazquez Neri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BTS-Interns-2019/internship_nodeJS/issues"
+  },
+  "homepage": "https://github.com/BTS-Interns-2019/internship_nodeJS#readme",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "http": "0.0.0"
+  }
+}
