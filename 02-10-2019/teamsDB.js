@@ -24,7 +24,9 @@ function insertTeam(name,location,stadium,logo){
             if(err){
                 reject('DB Connection error' + err);
             }
-            let querys = `INSERT INTO teams(name,locations,stadium,logo) VALUES(${name},${location},${stadium},${logo})`
+            
+            let querys = `INSERT INTO teams(name,locations,stadium,logo) VALUES("${name}","${location}","${stadium}","${logo}")`
+            console.log(querys)
             //usar la conexion para ejecutar query
             connection.query(querys, (error, rows, fields)=>{
                 //cuando termine la conexion, release it
