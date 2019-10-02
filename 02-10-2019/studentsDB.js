@@ -2,6 +2,7 @@
 
 const pool = require('./db.js');
 
+
 function getFirstStudent() {
     return new Promise((resolve, reject) => {
         pool.getConnection(function (err, connection) {
@@ -38,14 +39,14 @@ function getStudents() {
     });
 };
 
-function postStudent () {
-    const post = {first_name: 'David', last_name: 'Peregrino'};
+function postStudent (data) {
+   // const post = {first_name: 'David', last_name: 'Peregrino'};
     return new Promise ((resolve, reject) => {
         pool.getConnection(function (err, connection) {
             if (err) {
                 reject('DB connection error');
             };
-            connection.query("INSERT INTO students SET ?", post, function (error, results, fields) {
+            connection.query("INSERT INTO students SET ?", data, function (error, results, fields) {
                 connection.release();
 
                 if (error) {

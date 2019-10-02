@@ -5,9 +5,16 @@ const {
     postStudent,
     getStudents } = require ('./studentsDB.js');
 const express = require('express');
+const bodyParser = require('body-parser');
+
 
 const app = express();
 const port = 5000;
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+
 
 app.get('/', (req, res) => {
   /*  connection.connect((err) => {
@@ -38,7 +45,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/', (req, res) => {
-    postStudent ()
+    postStudent (req.body)
     .then((record) => {
          getStudents ()
     .then ((record) => {
