@@ -22,7 +22,6 @@ const app = http.createServer((req, res)=>{
                         res.writeHead(400,{"content-type":"text/plain"});
                         res.end("Error to read file db.json");
                     }else{
-
                         const file = JSON.parse(dato);
                         file[Object.keys(arra)] = Object.values(arra)[0];
                         fs.writeFile("db.json",JSON.stringify(file),(err)=>{
@@ -30,7 +29,7 @@ const app = http.createServer((req, res)=>{
                                 res.writeHead(400,{"content-type":"text/plain"});
                                 res.end("Error to write file db.json"); 
                             }else{
-                                res.writeHead(200,{"content-type":"text/plain"});
+                                res.writeHead(200,{"content-type":"aplication/json"});
                                 res.end(JSON.stringify(file));
                             }
                         });
