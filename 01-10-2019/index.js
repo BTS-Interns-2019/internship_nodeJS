@@ -31,7 +31,6 @@ app.get("/", (req, res) => {
 });
 
 //POST
-
 app.post("/", (req, res) => {
   fs.stat("db.json", function(err, data) {
     if (err) {
@@ -50,9 +49,8 @@ app.post("/", (req, res) => {
 
 
 //PUT
-
 app.put("/", (req, res) => {
-  fs.stat("db.json", function(err, data) {
+  fs.readFile("db.json", function(err, data) {
     if (err) {
       res.status(404);
       res.send("El archivo no fue encontrado");
@@ -67,13 +65,32 @@ app.put("/", (req, res) => {
   });
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}!`);
+
+//DELETE
+app.delete("/", (req, res) => {
+  fs.readFile("db.json", function(err, data) {
+    if (err) {
+      res.status(404);
+      res.send("El archivo no fue encontrado");
+      var data = JSON.parse(data);
+    } else {
+      fs.writeFile("db.json", JSON.stringify(req.body), (err) => {
+        res.set("Content-Type", "application/json");
+        res.status(200);
+        res.send(data);
+        console.log(req.body);
+      });
+    }
+  });
 });
+
+
 
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
+
+
 
 
