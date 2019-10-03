@@ -17,6 +17,13 @@ app.post('/login', (req, res) => {
         res.status(200);
         res.send(data);
     })
+    .catch((err) => {
+        res.set('Content-Type','application/json');
+        res.status(400);
+        res.send(err);
+    }
+
+    );
 })
 
 app.post('/signUp', (req, res)=>{

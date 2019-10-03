@@ -1,12 +1,13 @@
-'use strict'
-const mysql = require ('mysql');
+'strict use';
 
-var serverConnection = mysql.createPool({
-    host : 'localhost',
-    port : 3306,
-    user : 'root',
-    password : 'password',
-    database : 'futbol'
-})
+const mysql = require('mysql');
+
+let serverConnection = mysql.createPool({
+  host: 'localhost',
+  port: 3307,
+  user: 'root',
+  password: 'Savant32',
+  database: 'futbol',
+});
 
 module.exports = serverConnection;
