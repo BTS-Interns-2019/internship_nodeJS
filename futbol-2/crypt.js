@@ -7,6 +7,7 @@ function compare(plainText, hash) {
                 rej(err);
             }
             // console.log(res);
+            
             resolve(res)
         });
     })

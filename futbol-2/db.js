@@ -6,7 +6,7 @@ let serverConnection = mysql.createPool({
   host: 'localhost',
   port: 3307,
   user: 'root',
-  password: 'Savant32',
+  password: 'Rmc1553318',
   database: 'futbol',
 });
 
