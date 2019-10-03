@@ -1,0 +1,29 @@
+'use strict'
+const express = require('express');
+const mysql = require('mysql');
+
+let connection = mysql.createConnection({
+  host     : 'localhost',
+  user     : 'root',
+  password : 'Erreape24siete',
+  database : 'adoptions'
+});
+
+const app = express();
+const port = 5000;
+
+app.get('/', (req, res) => {
+  connection.connect((err) => {
+    if (err) {
+      console.log('Connection Error');
+      return
+    }
+    console.log('Connection Successful');
+  });
+
+  connection.end();
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+});
