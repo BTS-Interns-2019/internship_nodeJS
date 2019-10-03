@@ -21,5 +21,5 @@ Http.createServer( (req, res) => {
     res.end( data )
   })
 }).listen( 8080, () => {
-  console.log( 'running server at port 3000')
+  console.log( 'running server at port 8080')
 });
