@@ -1,8 +1,8 @@
+require('dotenv').config();
 const {
   path,
   express,
   bodyParser,
-  environment,
   bcrypt,
   jwt,
 } = require('./bootstrap');
@@ -11,7 +11,7 @@ const { signUp, logIn } = require('./db/user');
 const { getTeams, addTeam } = require('./db/footballFunctions');
 
 const app = express();
-const port = process.env.PORT || environment.PORT;
+const port = process.env.PORT || 4000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
