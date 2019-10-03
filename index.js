@@ -4,13 +4,14 @@ const {
   bodyParser,
   environment,
   bcrypt,
+  jwt,
 } = require('./bootstrap');
 
-const signUp = require('./db/sign_up');
+const { signUp, logIn } = require('./db/user');
 const { getTeams, addTeam } = require('./db/footballFunctions');
 
 const app = express();
-const port = environment.PORT;
+const port = process.env.PORT || environment.PORT;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -80,11 +81,34 @@ app.post('/users', (req, res) => {
   }
 });
 
+// login
+app.post('/login', (req, res) => {
+  res.set('Content-Type', 'application/json');
+  logIn(req.body.email)
+    .then((data) => {
+      bcrypt.compare(req.body.password, data.password, (err, match) => {
+        if (err) {
+          res.send(err);
+        } else if (!match) {
+          res.send({
+            message: 'Incorrect password',
+          });
+        } else {
+          const token = jwt.encode(req.body, 'secret');
+          res.send(token);
+        }
+      });
+    })
+    .catch((err) => {
+      res.send(err);
+    });
+});
+
 // get images
 app.get('/assets/teamlogos/:img', (req, res) => {
   res.sendFile(path.join(__dirname, 'assets/teamlogos', req.params.img));
 });
 
-app.listen(port || 4000, () => {
+app.listen(port, () => {
   console.log(`Node server running on ${port}`);
 });
