@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 require('./loadenv');
 require('./config/db');

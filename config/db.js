@@ -1,6 +1,6 @@
 "use strict";
 
-const mysql = require('mysql')
+const mysql = require('mysql');
 const config = require('./constants');
 
 var pool  = mysql.createPool({
