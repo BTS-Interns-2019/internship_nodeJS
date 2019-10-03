@@ -17,13 +17,19 @@ function postUser(body) {
         if (results[0] !== undefined) {
           compare(body.password, results[0].password)
             .then((data) => {
-              const tokenData = body;
-
-              const token = jwt.sign(tokenData, 'Secret Password', {
-                expiresIn: 60 * 60 * 24, // expires in 24 hours
-              });
-
-              resolve(token);
+                if (data) {
+                    const tokenData = Object.assign({}, results[0]) ;
+                    console.log(tokenData)
+    
+                  const token = jwt.sign(tokenData, 'Secret Password', {
+                    expiresIn: 60 * 60 * 24, // expires in 24 hours
+                  });
+    
+                  resolve(token);
+                  }
+                  else{
+                    reject('Error, your email or pass are wrong');
+                  }
             })
             .catch((data) => reject(data));
         } else {
