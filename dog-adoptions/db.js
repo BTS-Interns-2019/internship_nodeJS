@@ -1,12 +1,12 @@
 let mysql = require('mysql');
-let env = require('dotenv').config();
+let config = require('./constants');
 
 var connection = mysql.createPool({
-  host: env.DB_HOST,
-  port: env.DB_PORT,
-  user: env.DB_USER,
-  password: env.DB_PASSWORD,
-  database: env.DB_NAME
+  host: config.DB_HOST,
+  port: config.DB_PORT,
+  user: config.DB_USER,
+  password: config.DB_PASSWORD,
+  database: config.DB_NAME
 });
 
 module.exports = connection;

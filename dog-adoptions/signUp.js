@@ -7,7 +7,7 @@ function signUp(data, hash) {
 
 db.getConnection(function(err, connection) {
     if (err) { reject('DB Connection error'); }
-    connection.query('INSERT INTO users SET ?', data, function (error, results, fields) {
+    connection.query(`INSERT INTO users (first_name, last_name, username, password) VALUES ('${data.first_name}', '${data.last_name}','${data.username}', '${hash}')`, function (error, results, fields) {
       connection.release();
       if (error) { throw error};
       resolve(results);
@@ -16,6 +16,4 @@ db.getConnection(function(err, connection) {
   });
 }
 
-module.exports = {
-  signUp
-}
+module.exports = signUp

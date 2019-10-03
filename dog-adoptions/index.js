@@ -3,8 +3,8 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let dogs = require('./dogsDB');
 let signUp = require('./signUp');
-let bcrypt = require('bcrypt');
-
+let bcrypt = require('bcryptjs');
+let port = 5000;
 let app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -19,34 +19,36 @@ app.get('/', (req, res) => {
   });
 
 app.post('/auth/users', (req, res) => {
-    res.set('Content-Type', 'application/json');
-    
-    const { body } = req;
-    if (body.password === body.confirm_password) {
-      bcrypt.genSalt(10, (err, salt) => {
+  res.set('Content-Type', 'application/json');
+  
+  const { body } = req;
+  if (body.password === body.confirm_password) {
+    bcrypt.genSalt(10, (err, salt) => {
+      if (err) {
+        res.status(400);
+        res.send(err);
+      }
+
+      bcrypt.hash(body.password, salt, (err, hash) => {
         if (err) {
           res.status(400);
-          res.send(err);
+          res.send('Error generating the hash. Try again');
         }
-  
-        bcrypt.hash(body.password, salt, (err, hash) => {
-          if (err) {
-            res.status(400);
-            res.send('Error generating the hash. Try again');
-          }
-  
-          signUp(body, hash)
-            .then((result) => {
-              res.status(201);
-              res.send(result);
-            })
-        });
+
+        signUp(body, hash)
+          .then((result) => {
+            res.status(201);
+            res.send(result);
+          }).catch((err) => {
+            res.send(err)
+          })
       });
-    } else {
-      res.status(400);
-      res.send('Password does not match');
-    }
-  });
+    });
+  } else {
+    res.status(400);
+    res.send('Password does not match');
+  }
+});
   
 
 app.listen(port, (req, res) => {
