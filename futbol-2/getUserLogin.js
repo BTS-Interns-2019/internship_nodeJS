@@ -6,14 +6,15 @@ function postUser(body){
         db.getConnection((error, connection)=>{
             if(error) reject('DB connection Error:',error);
 
-            connection.query(`SELECT FROM user email, password WHERE email = ${body.email}`, (error, results, fields)=>{
+            connection.query(`SELECT email, password FROM user WHERE email = '${body.email}'`, (error, results, fields)=>{
+                console.log(results)
                 if(error){reject(error)}
 
             connection.release();
 
             if(error){throw error};
 
-            resolve(results);
+            resolve(results.password);
 
             })
 
