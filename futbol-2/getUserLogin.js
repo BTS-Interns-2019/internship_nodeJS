@@ -1,41 +1,40 @@
-'use strict'
+// 'use strict'
+const jwt = require('jsonwebtoken');
 const db = require('./db');
-var jwt = require('jsonwebtoken')
 const compare = require('./crypt');
 
 
-function postUser(body){
-    return new Promise((resolve, reject) => {
-        db.getConnection((error, connection)=>{
-            if(error) reject('DB connection Error:',error);
+function postUser(body) {
+  return new Promise((resolve, reject) => {
+    db.getConnection((error, connection) => {
+      if (error) { throw error; }
 
-            connection.query(`SELECT * FROM user WHERE email = '${body.email}'`, (error, results, fields)=>{
-                if(error){reject(error)}
-
-            connection.release();
-
-            if(error){throw error};
-            // console.log(results[0].password, body.password);
-            compare(body.password, results[0].password)
+      connection.query(`SELECT * FROM user WHERE email = '${body.email}'`, (error, results, fields) => {
+          connection.release();
+          if (error) { throw error; }
+        // check if the results exists, in case of email was uncorrect
+        // console.log(results[0].password);
+        
+        if (results[0].password) {
+            console.log('Why');
+            
+          compare(body.password, results[0].password)
             .then((data) => {
+              const tokenData = body;
 
-                var tokenData = body 
+              const token = jwt.sign(tokenData, 'Secret Password', {
+                expiresIn: 60 * 60 * 24, // expires in 24 hours
+              });
 
-                var token = jwt.sign(tokenData, 'Secret Password', {
-                    expiresIn: 60 * 60 * 24 // expires in 24 hours
-                 })
-
-
-                resolve(token);
+              resolve(token);
             })
-            .catch( (data) => reject(data));
-
-            })
-
-        })
-
-    })
-
+            .catch((data) => reject(data));
+        } else {
+          throw 'Wrong Credentials';
+        }
+      });
+    });
+  });
 }
 
 module.exports = postUser;
