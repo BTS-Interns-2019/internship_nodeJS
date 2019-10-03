@@ -10,14 +10,11 @@ function postUser(body) {
       if (error) { throw error; }
 
       connection.query(`SELECT * FROM user WHERE email = '${body.email}'`, (error, results, fields) => {
-          connection.release();
-          if (error) { throw error; }
+        connection.release();
+        if (error) { throw error; }
         // check if the results exists, in case of email was uncorrect
-        // console.log(results[0].password);
-        
-        if (results[0].password) {
-            console.log('Why');
-            
+
+        if (results[0] !== undefined) {
           compare(body.password, results[0].password)
             .then((data) => {
               const tokenData = body;
@@ -30,7 +27,7 @@ function postUser(body) {
             })
             .catch((data) => reject(data));
         } else {
-          throw 'Wrong Credentials';
+          reject('Wrong credentials');
         }
       });
     });
