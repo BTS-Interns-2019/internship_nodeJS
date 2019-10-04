@@ -1,6 +1,13 @@
-const db = require('./db_pool');
-const bodyParser = require('../bootstrap');
+'use strict'
 
+// database operations regarding teams
+const db = require('../config/db');
+
+/**
+ * getTeams method
+ * get all the teams' data
+ * @return {object} database records
+ */
 function getTeams() {
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
@@ -24,6 +31,12 @@ function getTeams() {
   });
 }
 
+/**
+ * addTeam method
+ * add a new team to the database
+ * @param {object} data team's data
+ * @return {object} database confirmation
+ */
 function addTeam(team) {
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
@@ -58,6 +71,8 @@ function addTeam(team) {
   });
 }
 
+// TODO: getTeam, updateTeam
+// export team's database operations
 module.exports = {
   getTeams,
   addTeam,
