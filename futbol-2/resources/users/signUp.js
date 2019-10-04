@@ -17,7 +17,7 @@ logger.level = 'debug';
 function signUp(req, res) {
   logger.debug('signUp resource');
   // get the users from the database
-  return signUpServices()
+  return signUpServices(req.body)
   .then((userSettings) => {
     logger.debug('signed up from the signUp resource');
     res.set('Content-Type', 'application/json');
