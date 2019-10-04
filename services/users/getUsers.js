@@ -10,17 +10,9 @@ logger.level = 'debug';
 * use the userDaos to get all users from the database
 * @return {object} the database records gotten or an error
 **/
-function getUsers() {
+async function getUsers() {
   logger.debug('get users service');
-  return new Promise((resolve, reject) => {
-    userDaos.getUsers()
-    .then((result) => {
-      resolve(result);
-    })
-    .catch((err) => {
-      reject(err);
-    });
-  });
+  return await userDaos.getUsers();
 }
 
 module.exports = getUsers;

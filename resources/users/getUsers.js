@@ -13,18 +13,19 @@ logger.level = 'debug';
 * @param {Object} res - client response in case toke is invalid or expired
 * @return {object} a JSON response with database records or an error response
 **/
-function getUsers(req, res) {
+async function getUsers(req, res) {
   logger.debug('getUsers resource');
-  // get the users from the database
-  return userServices()
-  .then((userSettings) => {
+  res.set('Content-Type', 'application/json');
+  try {
+    // get the users from the database
+    const result = await userServices();
     logger.debug('sending the users from the getUsers resource');
-    res.set('Content-Type', 'application/json');
-    res.send({users: userSettings});
-  })
-  .catch((err) => {
-    res.send(err);
-  });
+    res.send({data: result, status: 'success', message: 'Users found'});
+  } catch (error) {
+    logger.debug('sending the error trying to get the', error);
+    res.status(404);
+    res.send({ status: 'error', message: 'Users not found' });
+  }
 }
 
 module.exports = getUsers;

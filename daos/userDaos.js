@@ -7,23 +7,16 @@ const db = require('../config/db');
 * get all users from the database
 * @return {object} database records
 **/
-function getUsers() {
-  return new Promise((resolve, reject) => {
-    db.getConnection(function(err, connection) {
-      if (err) { reject('DB Connection error'); } // not connected!
+async function getUsers() {
+  return await new Promise((resolve, reject) => {
+    // Use the connection to execute a query
+    db.query('SELECT * FROM user', function (error, results, fields) {
+    
+      // Handle error after the release.
+      if (error) { reject(error) };
 
-      // Use the connection to execute a query
-      connection.query('SELECT * FROM user', function (error, results, fields) {
-
-        // When done with the connection, release it.
-        connection.release();
-      
-        // Handle error after the release.
-        if (error) { throw error };
-
-        // resolve the promise
-        resolve(results);
-      });
+      // resolve the promise
+      resolve(results);
     });
   });
 }
