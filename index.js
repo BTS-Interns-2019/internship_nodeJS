@@ -8,7 +8,7 @@ const {
 } = require('./bootstrap');
 
 const { signUp, logIn } = require('./db/user');
-const { getTeams, addTeam } = require('./db/footballFunctions');
+const { getTeams, addTeam, getTeam } = require('./db/footballFunctions');
 
 const app = express();
 const port = process.env.PORT || 4000;
@@ -32,6 +32,18 @@ app.get('/teams', (req, res) => {
       res.send(err);
     });
 });
+
+// get team
+app.post('/teams/:id', (req, res) => {
+  res.set({'Content-Type': 'application/json'});
+  getTeam(req.id)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.send(err);
+    })
+})
 
 // add teams
 app.post('/teams', (req, res) => {
@@ -103,6 +115,7 @@ app.post('/login', (req, res) => {
       res.send(err);
     });
 });
+
 
 // get images
 app.get('/assets/teamlogos/:img', (req, res) => {

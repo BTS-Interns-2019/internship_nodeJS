@@ -58,7 +58,31 @@ function addTeam(team) {
   });
 }
 
+function getTeam(id) {
+  return new Promise((resolve, reject) => {
+    db.getConnection((err, connection) => {
+      if (err) {
+        reject('Error connecting to the database');
+
+        // make query to get teams
+        connection.query(`SELECT * FROM teams WHERE id=${id}`, (err, results) => {
+          // release connection
+          connection.release();
+
+          // handle errors
+          if (err) {
+            reject(err);
+          }
+
+          resolve(results[0]);
+        });
+      }
+    })
+  })
+}
+
 module.exports = {
   getTeams,
   addTeam,
+  getTeam,
 };
