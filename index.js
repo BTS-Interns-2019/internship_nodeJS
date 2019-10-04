@@ -1,27 +1,4 @@
 'use strict'
-<<<<<<< HEAD
-const http = require ('http');
-const fs = require('fs');
-
-//Create an instance of the http server to handle HTTP requests
-let app = http.createServer ((req, res) => {
-
-    fs.readFile('./example.txt', 'utf8' , (err, data) => {
-        if(err){
-            throw Error;
-        }
-
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.end(data);
-    });
-   
-
-});
-
-//start the server on port 3000
-app.listen(5000, '127.0.0.1');
-console.log('Node server running on port 3000');
-=======
 
 require('./loadenv');
 require('./config/db');
@@ -56,4 +33,3 @@ app.use('/api', apiApp);
 app.listen(config.APP_PORT, () => {
   logger.info(`Listen on port ${config.APP_PORT} in ${config.ENV} environment`);
 });
->>>>>>> ebce5e2a4ea8c898737914fe1be81204ec5ce204
