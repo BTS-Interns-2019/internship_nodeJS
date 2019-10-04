@@ -1,6 +1,5 @@
 'use strict'
-const db = require('./db');
-var jwt = require('jsonwebtoken')
+const db = require('..config/db');
 const compare = require('./crypt');
 
 
