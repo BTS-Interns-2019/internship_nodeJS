@@ -22,6 +22,7 @@ function signUp(req, res) {
     .then((result) => {
       logger.debug('sending result of adding user with the signUp resource');
       res.set('Content-Type', 'application/json');
+      res.status(201);
       res.send({
         status: 'success',
         message: 'User signed up successfully',
