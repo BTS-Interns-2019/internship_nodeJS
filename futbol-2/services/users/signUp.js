@@ -6,9 +6,9 @@ const addUser= require('../../daos/signUp');
 /**
  * @return {Promise} promise del signUp
  */
-function signUp() {
+function signUp(body) {
     return new Promise((resolve, reject) => {
-     addUser()
+     addUser(body)
       .then((result) => {
         resolve(result);
       })
