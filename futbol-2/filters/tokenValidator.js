@@ -7,8 +7,8 @@ const logger = require("log4js");
 // * @param {Object} res - client response in case toke is invalid or expired
 // * @param {Object} next - method to continue
 
-function tokenValidator(bpassword, res, next) {
-  return compare(bpassword, results[0].password)
+function tokenValidator(bpassword, rpassword) {
+  return compare(bpassword, rpassword)
     .then(data => {
       var tokenData = body;
 
