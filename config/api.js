@@ -5,10 +5,10 @@ const apiApp = require('express')();
 
 // define modules from the routers folder
 const users = require('../routers/users');
-// const teams = require('../routers/teams');
+const teams = require('../routers/teams');
 
 // define router/route pairs
 apiApp.use('/user', users);
-// apiApp.use('/teams', teams);
+apiApp.use('/teams', teams);
 
 module.exports = apiApp;

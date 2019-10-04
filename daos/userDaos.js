@@ -17,7 +17,7 @@ function signUp(data, hash) {
         reject('Error connecting to the database');
       }
 
-      const query = `INSERT INTO users (name, last_name, email, password) VALUES ('${data.name}','${data.lastName}','${data.email}','${hash}')`;
+      const query = `INSERT INTO users (name, last_name, email, password) VALUES ('${data.firstName}','${data.lastName}','${data.email}','${hash}')`;
 
       connection.query(query, (err, results) => {
         connection.release();

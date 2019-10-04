@@ -2,6 +2,7 @@
 
 const bcrypt = require('bcryptjs');
 const log4js = require('log4js');
+
 const logger = log4js.getLogger('Service signUp.js');
 logger.level = 'debug';
 
@@ -19,7 +20,7 @@ function signUp(body) {
 
   return new Promise((resolve, reject) => {
     // password and confirm password must match
-    if (body.password === body.confirmPassword) {
+    if (body.password === body.validatePassword) {
       // generate the salt
       bcrypt.genSalt(10, (err, salt) => {
         if (err) {

@@ -35,6 +35,6 @@ function getTeams() {
 // export team's database operations
 module.exports = {
   getTeams,
-  getTeam,
-  updateTeam,
+  // getTeam,
+  // updateTeam,
 };

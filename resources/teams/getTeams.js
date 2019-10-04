@@ -5,7 +5,7 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Resource getTeams.js');
 logger.level = 'debug';
 
-// obtain user services
+// obtain team services
 const teamServices = require('../../services/teams');
 
 /**
@@ -15,10 +15,10 @@ const teamServices = require('../../services/teams');
  */
 function getTeams(req, res) {
   logger.debug('getTeams resource');
-  // add user to database
+  // get teams' data from database
   return teamServices.getTeams()
     .then((result) => {
-      logger.debug('sending result of adding user with the getTeams resource');
+      logger.debug('sending result of getting the teams with the getTeams resource');
       res.set('Content-Type', 'application/json');
       res.send({
         status: 'success',
@@ -29,7 +29,7 @@ function getTeams(req, res) {
     .catch((err) => {
       res.send({
         status: 'failure',
-        message: 'There was an error retrieven the teams\' data',
+        message: 'There was an error retrieving the teams\' data',
         data: err,
       });
     });

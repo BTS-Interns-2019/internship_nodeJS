@@ -27,8 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
-  res.header('Access-Control-Allow-Headers',
-  'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
   // give the url of the request to the response
   res.url = req.url;
   next();
@@ -42,19 +41,6 @@ app.use('/api', apiApp);
 // set the listening port
 app.listen(config.APP_PORT, () => {
   logger.info(`Listening to port ${config.APP_PORT} in ${config.ENV} environment`);
-});
-
-// add teams
-app.post('/teams', (req, res) => {
-  res.set({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-  });
-
-  addTeam(req.body)
-    .then((result) => res.send(result))
-    .catch((err) => res.send(err));
 });
 
 // get images
