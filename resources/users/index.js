@@ -1,7 +1,7 @@
 'strict mode';
 
-const getUsers = require('./getUsers');
+const signUp = require('./signUp.js');
 
 module.exports = {
-  getUsers
+  signUp
 };
