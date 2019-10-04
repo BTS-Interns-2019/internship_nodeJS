@@ -2,8 +2,8 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const login = require('./getUserLogin');
-const signUp = require('./signUp');
+const login = require('./daos/getUserLogin');
+const signUp = require('./daos/signUp');
 var jwt = require('jsonwebtoken');
 
 const app = express();
