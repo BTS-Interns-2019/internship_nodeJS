@@ -5,10 +5,12 @@ const bodyParser = require('body-parser');
 const login = require('./getUserLogin');
 const signUp = require('./signUp');
 var jwt = require('jsonwebtoken');
+const cors = require('cors')
 
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
@@ -24,6 +26,7 @@ app.post('/login', (req, res) => {
     .catch((err) => {
         res.set('Content-Type','application/json');
         res.status(400);
+        console.log(data)
         res.send(err);
     }
 
