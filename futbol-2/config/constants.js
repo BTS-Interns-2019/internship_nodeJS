@@ -7,5 +7,5 @@ module.exports = {
   DB_PASSWORD: process.env.DB_PASSWORD,
   DB_NAME: process.env.DB_NAME,
   APP_PORT: process.env.APP_PORT,
-  ENV: process.env.ENV
+  // ENV: process.env.ENV
 };
