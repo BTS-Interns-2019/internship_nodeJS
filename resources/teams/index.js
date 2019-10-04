@@ -1,6 +1,6 @@
 'use strict'
 
-// get the services for the teams
+// get the function that send responses regarding teams
 const getTeams = require('./getTeams');
 // const getTeam = require('./getTeam');
 // const updateTeam = require('./updateTeam');

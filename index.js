@@ -44,23 +44,6 @@ app.listen(config.APP_PORT, () => {
   logger.info(`Listening to port ${config.APP_PORT} in ${config.ENV} environment`);
 });
 
-// get teams
-app.get('/teams', (req, res) => {
-  res.set({
-    'Content-Type': 'application/json',
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
-  });
-
-  getTeams()
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.send(err);
-    });
-});
-
 // add teams
 app.post('/teams', (req, res) => {
   res.set({
