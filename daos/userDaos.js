@@ -1,6 +1,6 @@
 'use strict'
 
-const db = require('../config/Db.js');
+const db = require('../config/db.js');
 
 /**
 * add a new user (signUp method)
