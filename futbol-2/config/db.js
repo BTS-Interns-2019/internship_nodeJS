@@ -1,10 +1,10 @@
-'use strict';
+"use strict";
 
-const mysql = require('mysql');
+const mysql = require("mysql");
 
 let serverConnection = mysql.createPool({
   host: config.DB_HOST,
-  port: 3307,
+  port: config.APP_POR,
   user: config.DB_USER,
   password: config.DB_PASSSWORD,
   database: config.DB_NAME
