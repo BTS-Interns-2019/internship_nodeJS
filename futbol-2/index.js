@@ -2,79 +2,30 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-const login = require('./daos/getUserLogin');
-const signUp = require('./daos/signUp');
+// const login = require('./daos/getUserLogin');
+// const signUp = require('./daos/signUp');
 var jwt = require('jsonwebtoken');
+const apiApp = require('./config/api');
+const config = require('./config/constants');
 
 const app = express();
-const port = 3000;
+const router = express.Router();
+// const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
+app.use(router);
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  res.url = req.url;
+  next();
+});
+
 app.use(bodyParser.json());
+app.use('/api', apiApp);
 
-
-//Validacion de usuario y envio de token
-app.post('/login', (req, res) => {
-    login(req.body)
-    .then((data)=>{
-        res.set('Content-Type','application/json');
-        res.status(200);
-        res.send(data);
-    })
-    .catch((err) => {
-        res.set('Content-Type','application/json');
-        res.status(400);
-        res.send(err);
-    }
-
-    );
-})
-
-
-//Crear usuario
-app.post('/signUp', (req, res) => {
-    signUp(req.body)
-        .then((data) => {
-            res.set('Content-Type', 'application/json');
-            res.status(200);
-            res.send(data);
-        }).catch((e) => {
-            res.set('Content-Type', 'text/plain');
-            res.status(400);
-            res.send(e);
-        })
-})
-
-// Validacion de token
-app.get('/secure', (req, res) => {
-    var token = req.headers['authorization']
-    if(!token){
-        res.status(401).send({
-          error: "Es necesario el token de autenticación"
-        })
-        return
-    }
-
-    token = token.replace('Bearer ', '')
-
-    jwt.verify(token, 'Secret Password', function(err, user) {
-      if (err) {
-        res.status(401).send({
-          error: 'Token inválido'
-        })
-      } else {
-        res.send({
-          message: 'Autenticado'
-        })
-      }
-    })
-})
-
-
-
-
-
-// and here
-app.listen(port, 'localhost', () => {
-    console.log('Server Running on port');
+app.listen(config.APP_PORT, () => {
+  console.log(`Server Running on port ${config.APP_PORT}`);
 });
