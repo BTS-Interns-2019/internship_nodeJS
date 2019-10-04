@@ -26,6 +26,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json());
 app.use('/api', apiApp);
 
-app.listen(config.APP_PORT, () => {
-  console.log(`Server Running on port ${config.APP_PORT}`);
+app.listen(3000, () => {
+  console.log(`Server Running on port 3000`);
 });

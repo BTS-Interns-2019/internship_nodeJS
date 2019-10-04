@@ -3,6 +3,8 @@
 const loginUserService = require('../../services/users/loginUser');
 
 function loginUser(req, res) {
+    console.log(req.body);
+    
   return loginUserService(req.body)
     .then((token) => {
       res.set('Content-Type', 'application/json');
@@ -13,4 +15,4 @@ function loginUser(req, res) {
     });
 }
 
-module.exports = loginUserService;
+module.exports = loginUser;

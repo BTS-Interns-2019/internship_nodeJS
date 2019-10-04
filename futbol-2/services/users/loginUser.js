@@ -3,9 +3,10 @@
 const login = require('../../daos/getUserLogin');
 const returnToken = require('../../filters/tokenValidator');
 
-function loginUser() {
+function loginUser(body) {
+    
   return new Promise((resolve, reject) => {
-    login(req.body)
+    login(body)
       .then((data) => {
         resolve(returnToken(data));
       })

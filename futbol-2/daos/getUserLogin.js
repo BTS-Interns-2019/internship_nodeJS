@@ -27,6 +27,8 @@ function postUser(body) {
                   reject(400);
                 }
               });
+          }else {
+            reject(404);
           }
         },
       );

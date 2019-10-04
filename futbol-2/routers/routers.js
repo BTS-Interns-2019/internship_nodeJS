@@ -7,8 +7,8 @@ const usersRouter = require('express').Router();
 const login = require('../resources/users/loginUser');
 const signUp = require('../resources/users/signUp');
 
-usersRouter.get('/login' ,login.login);
-usersRouter.get('/signUp' ,signUp.signUp);
+usersRouter.post('/login' ,login);
+usersRouter.post('/signUp' ,signUp);
 
 
 
