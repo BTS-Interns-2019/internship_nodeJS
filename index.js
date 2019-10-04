@@ -42,8 +42,3 @@ app.use('/api', apiApp);
 app.listen(config.APP_PORT, () => {
   logger.info(`Listening to port ${config.APP_PORT} in ${config.ENV} environment`);
 });
-
-// get images
-app.get('/assets/teamlogos/:img', (req, res) => {
-  res.sendFile(path.join(__dirname, 'assets/teamlogos', req.params.img));
-});
