@@ -9,8 +9,9 @@ const users = require('../resources/users');
 // get filters
 const userDataValidator = require('../filters/users');
 
-// JSON schema validator middlware
+// JSON schema validator middleware
 usersRouter.post('/', userDataValidator.newUserDataValidator);
+usersRouter.post('/login', userDataValidator.loginDataValidator);
 
 // set routes
 usersRouter.post('/', users.signUp);
