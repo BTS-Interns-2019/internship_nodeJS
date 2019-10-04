@@ -15,7 +15,6 @@ function postUser(body){
 
             if(error){throw error};
             // console.log(results[0].password, body.password);
-            
 
             })
 
