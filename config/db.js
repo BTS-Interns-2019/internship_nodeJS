@@ -1,13 +1,12 @@
-"use strict";
+let mysql = require('mysql');
+let config = require('./constants');
 
-const mysql = require('mysql');
-const config = require('./constants');
-
-var pool  = mysql.createPool({
+var connection = mysql.createPool({
   host: config.DB_HOST,
+  port: config.DB_PORT,
   user: config.DB_USER,
-  password: config.DB_PASSSWORD,
+  password: config.DB_PASSWORD,
   database: config.DB_NAME
 });
 
-module.exports = pool;
+module.exports = connection;
