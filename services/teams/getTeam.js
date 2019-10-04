@@ -9,15 +9,15 @@ logger.level = 'debug';
 const teamDaos = require('../../daos/teamDaos');
 
 /**
- * getTeams service
- * use the teamDaos to get the teams' data from the database
+ * getTeam service
+ * use the teamDaos to get the team's data from the database
  * @return {object} database records
  */
-function getTeams() {
-  logger.debug('getTeams service');
+function getTeam(id) {
+  logger.debug('getTeam service');
 
   return new Promise((resolve, reject) => {
-    teamDaos.getTeams()
+    teamDaos.getTeam(id)
       .then((data) => {
         resolve(data);
       })
@@ -27,4 +27,4 @@ function getTeams() {
   });
 }
 
-module.exports = getTeams;
+module.exports = getTeam;
