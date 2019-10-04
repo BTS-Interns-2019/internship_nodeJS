@@ -7,8 +7,9 @@ const usersRouter = require('express').Router();
 const users = require('../resources/users');
 
 //Set routers
-usersRouter.post('/', users.signUp);
-usersRouter.post('/login', users.logIn);
+usersRouter.get('/', users.getUsers);
+//usersRouter.post('/', users.signUp);
+//usersRouter.post('/login', users.logIn);
 
 
 module.exports = usersRouter;

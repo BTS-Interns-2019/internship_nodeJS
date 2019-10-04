@@ -7,6 +7,6 @@ const dogsRouter = require('express').Router();
 const dogs = require('../resources/dogs');
 
 //Set router
-dogsRouter.get('./dog', dogs.getDog);
+dogsRouter.get('./dog', dogs.getDogs);
 
 module.exports = dogsRouter;
