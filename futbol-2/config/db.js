@@ -6,7 +6,7 @@ const config = require('./constants')
 console.log(config)
 let serverConnection = mysql.createPool({
   host: config.DB_HOST,
-  port: config.APP_POR,
+  port: config.APP_PORT,
   user: config.DB_USER,
   password: config.DB_PASSWORD,
   database: config.DB_NAME,
