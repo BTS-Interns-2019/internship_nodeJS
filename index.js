@@ -10,8 +10,9 @@ const express = require('express');
 const log4js = require('log4js');
 const apiApp = require('./config/api');
 const config = require('./config/constants');
+
 const logger = log4js.getLogger('index.js');
- 
+
 // boot express
 const app = express();
 const router = express.Router();
