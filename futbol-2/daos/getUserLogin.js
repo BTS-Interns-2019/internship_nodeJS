@@ -1,6 +1,6 @@
 "use strict";
-const db = require("..config/db");
-const compare = require("./crypt");
+
+const db = require("../config/db");
 
 function postUser(body) {
   return new Promise((resolve, reject) => {
@@ -8,11 +8,8 @@ function postUser(body) {
       if (error) reject("DB connection Error:", error);
 
       connection.query(
-        `SELECT * FROM user WHERE email = '${body.email}'`,
+        `SELECT email, password FROM user WHERE email = '${body.email}'`,
         (error, results, fields) => {
-          if (error) {
-            reject(error);
-          }
 
           connection.release();
 
@@ -20,6 +17,9 @@ function postUser(body) {
             throw error;
           }
           // console.log(results[0].password, body.password);
+          if (results[0] !== undefined) {
+            resolve(results[0])
+          }
         }
       );
     });
