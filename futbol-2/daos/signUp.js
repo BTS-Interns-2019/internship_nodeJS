@@ -1,7 +1,12 @@
 'use strict'
-const db = require('..config/db');
+const db = require('../config/db');
 const bcrypt = require("bcryptjs");
 
+/**
+ * 
+ * @param {user} user object
+ * @return {Promise} promise query
+ */
 function addUser(user) {
     return new Promise((resolve, reject) => {
         db.getConnection(function (err, connection) {
