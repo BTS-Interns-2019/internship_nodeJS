@@ -3,7 +3,7 @@
 const loginUserService = require('../../services/users/loginUser');
 
 function loginUser(req, res) {
-  return loginUserService()
+  return loginUserService(req.body)
     .then((token) => {
       res.set('Content-Type', 'application/json');
       res.send({ user: token });
