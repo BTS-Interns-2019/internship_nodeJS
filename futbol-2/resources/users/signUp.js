@@ -21,11 +21,13 @@ function signUp(req, res) {
   res.set('Content-Type', 'application/json');
   let valid = new Validator();
   const validated = valid.validate(req.body, userModel).errors;
+  console.log(validated);
+  // Validates the reques body before send to the DB
   if (validated[0]) {
     res.set(400);
     res.send({
       status: 400,
-      message: validated.map(msj => msj.message).join(', ')
+      message: validated.map(msj => msj.stack)
     });
   } else {
     // get the users from the database
@@ -40,6 +42,7 @@ function signUp(req, res) {
         });
       })
       .catch((err) => {
+        logger.debug('Error trying to register user')
         res.status(err.statusCode);
         res.send({
           status: err.statusCode,
