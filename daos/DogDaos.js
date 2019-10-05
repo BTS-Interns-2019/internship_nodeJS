@@ -56,12 +56,43 @@ function getDogs () {
         };
 
         resolve(results);
-      })
-    })
-  })
+      });
+    });
+  });
+};
+
+function deleteDog (data) {
+  return new Promise ((resolve, reject) => {
+
+    db.getConnection(function (err, connection) {
+      if (err) {
+        reject('DB connection error');
+      };
+
+      connection.query(`SELECT * FROM dogs WHERE name = '${data.name}'` , function (error, results, fields) {
+      if(error) { 
+          reject(error.message); 
+        }
+        if(results.length === 0){
+          reject(`ERROR: The name ${data.name} don't exists!`);
+        }
+
+      connection.query(`DELETE FROM dogs WHERE name = '${data.name}'`, function(error, results, fields) {
+        connection.release();
+
+        if(error) {
+          throw error;
+        };
+
+        resolve(results);
+      });
+    });
+    });
+  });
 }
 
 module.exports = {
 addDog,
 getDogs,
+deleteDog,
 } 
