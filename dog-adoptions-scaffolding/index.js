@@ -3,20 +3,23 @@
 require('./loadenv');
 require('./config/db');
 
+// load modules
 const bodyParser = require('body-parser');
 const express = require('express');
-const log4js = reqire('log4js');
 const config = require('./config/constants');
-const logger = log4.getLogger('index.js');
+const apiApp = require('./config/api')
+const log4js = require('log4js');
+const logger = log4js.getLogger('index.js');
 
+// boot express
 const app = express();
 const router = express.Router();
 
-logger.level = 'debug';
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(router);
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json({ limit: '25MB' }));
-app.use('/api', apiApp);
+
+// define the level of logs
+logger.level = 'debug';
 
 // access-control-allow
 app.use((req, res, next) => {
@@ -27,7 +30,11 @@ app.use((req, res, next) => {
   res.url = req.url;
   next();
 });
- 
+
+app.use(bodyParser.json({ limit: '25MB' }));
+app.use('/api', apiApp);
+
+// set the listening port
 app.listen(config.APP_PORT, () => {
-  logger.info(`Listen on port ${config.APP_PORT} in ${config.ENV} environment`);
+  logger.info(`Listening to port ${config.APP_PORT} in ${config.ENV} environment`);
 });

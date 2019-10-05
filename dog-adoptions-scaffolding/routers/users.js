@@ -1,9 +1,11 @@
-'use strict'
+'use strict';
 
+// get router
 const usersRouter = require('express').Router();
 
+// get resource
 const users = require('../resources/users');
 
-usersRouter.post('./auth/users', users.addUsers);
+usersRouter.post('/user', users.addUsers);
 
 module.exports = usersRouter;

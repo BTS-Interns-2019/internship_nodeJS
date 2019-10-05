@@ -9,16 +9,16 @@ try {
   let env = process.env.ENV;
   switch (env) {
     case 'testing':
-      dotenv.load({ path: path.resolve('.env.testing') });
+      dotenv.config({ path: path.resolve('.env.testing') });
       break;
     case 'production':
-      dotenv.load({ path: path.resolve('.env.production') });
+      dotenv.config({ path: path.resolve('.env.production') });
       break;
     default:
-      dotenv.load({ path: path.resolve('.env.default') });
+      dotenv.config({ path: path.resolve('.env.default') });
       process.env.ENV = 'development';
       break;
   }
 } catch (e) {
-  dotenv.load({ path: path.resolve('.env.default') });
+  dotenv.config({ path: path.resolve('.env.default') });
 }
