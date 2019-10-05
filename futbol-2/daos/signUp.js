@@ -1,6 +1,13 @@
-"use strict";
-const db = require("../config/db");
-const bcrypt = require("bcryptjs");
+'use strict'
+
+const bcrypt = require('bcryptjs');
+const createError = require('http-errors');
+const log4js = require('log4js');
+const logger = log4js.getLogger('Resource getUser.js');
+logger.level = 'debug';
+const db = require('../config/db');
+
+const badRequestError = createError(400, 'Please introduce the correct Inputs');
 
 /**
  *
@@ -9,26 +16,31 @@ const bcrypt = require("bcryptjs");
  */
 function addUser(user) {
   return new Promise((resolve, reject) => {
-    db.getConnection(function(err, connection) {
+    db.getConnection((err, connection) => {
       if (err) {
-        reject("DB connection error", err);
+        logger.error(err);
+        reject('DB connection error');
       }
       bcrypt
         .hash(user.password, 5)
-        .then(res => {
+        .then((res) => {
           user.password = res;
           connection.query(
             `INSERT INTO user (email, password) values ('${user.email}','${user.password}')`,
-            function(error, results, fields) {
+            (error, results, fields) => {
               connection.release();
               if (error) {
+                logger.error(error)
                 throw error;
               }
-              resolve(user);
-            }
+              resolve('User created correctly');
+            },
           );
         })
-        .catch(err => console.error(err.message));
+        .catch((err) => {
+          logger.error(err);
+          reject(badRequestError);
+        });
     });
   });
 }

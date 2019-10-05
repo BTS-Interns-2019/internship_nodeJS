@@ -1,18 +1,18 @@
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
+const log4js = require('log4js');
+const logger = log4js.getLogger('Resource getUser.js');
+logger.level = 'debug';
 
 function compare(plainText, hash) {
-    return new Promise((resolve, rej) => {
-        bcrypt.compare(plainText, hash, function(err, res) {
-            if(err){
-                rej(err);
-            }
-            // console.log(res);
-            
-            resolve(res)
-        });
-    })
+  return new Promise((resolve, reject) => {
+    bcrypt.compare(plainText, hash, (err, res) => {
+      if (err) {
+        reject(err);
+        logger.error(err)
+      }
+      resolve(res);
+    });
+  });
 }
-
-console.log(compare('$2a$05$H8CRnR3n9Q0QqGVb/qJ.HeQDmMhf5.cL36G9WlQTjFS59NMCKgdby', 'pass78465'));
 
 module.exports = compare;

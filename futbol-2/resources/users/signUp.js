@@ -18,14 +18,25 @@ function signUp(req, res) {
   logger.debug('signUp resource');
   // get the users from the database
   return signUpServices(req.body)
-  .then((userSettings) => {
-    logger.debug('signed up from the signUp resource');
-    res.set('Content-Type', 'application/json');
-    res.send({users: userSettings});
-  })
-  .catch((err) => {
-    res.send(err);
-  });
+    .then((userSettings) => {
+      logger.debug('signed up from the signUp resource');
+      res.set('Content-Type', 'application/json');
+      res.status(201)
+      res.send({
+        status: 201,
+        message: 'User created succesfully',
+        data: { users: userSettings },
+      });
+    })
+    .catch((err) => {
+      res.set('Content-Type', 'application/json');
+      res.status(err.statusCode);
+      res.send( {
+        status: err.statusCode,
+        message: err.message,
+        data: {}
+      } );
+    });
 }
 
 module.exports = signUp

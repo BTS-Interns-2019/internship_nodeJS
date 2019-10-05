@@ -10,10 +10,20 @@ function getTeams(req, res) {
     getTeamsService()
       .then((results) => {
         res.set('Content-Type', 'application/json');
-        res.send({ data: results });
+        res.send({ 
+          status: 200,
+          message: 'Get data succesfully',
+          data: {
+            results,
+          },
+        });
       })
       .catch((err) => {
-        res.send(err)
+        res.send({
+          status: err.statusCode,
+          message: err.statusMessage,
+          data: {},
+        })
       });
   });
 }

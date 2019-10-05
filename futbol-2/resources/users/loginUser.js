@@ -8,10 +8,19 @@ function loginUser(req, res) {
   return loginUserService(req.body)
     .then((token) => {
       res.set('Content-Type', 'application/json');
-      res.send({ user: token });
+      res.send({ 
+        status: 200,
+        message: 'Authorization success',
+        data: { user: token  }
+      });
     })
     .catch((err) => {
-      res.send(err);
+      res.status(err.statusCode);
+      res.send({
+        status: err.statusCode,
+        message: err.message,
+        data: {},
+      });
     });
 }
 

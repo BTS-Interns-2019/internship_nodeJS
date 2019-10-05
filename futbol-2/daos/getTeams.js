@@ -1,5 +1,9 @@
 'use strict'
+const log4js = require('log4js');
+const logger = log4js.getLogger('Resource getUser.js');
+logger.level = 'debug';
 
+const createError = require('http-errors');
 const db = require('../config/db');
 /**
  * @return {Promise} Promise with teams from DB
@@ -8,12 +12,14 @@ function getTeams() {
   return new Promise((resolve, reject) => {
     db.getConnection((error, connection) => {
       if (error) {
-        reject(`DB connection error: ${error}`);
+        reject(createError(500, 'DB connection error'));
+        logger.error(error);
       }
-      connection.query('SELECT * FROM equipo', (err, results, fileds) => {
+      connection.query('SELECT * FROM equipo', (err, results) => {
         connection.release();
 
         if (err) {
+          logger.error(err)
           throw err;
         }
         resolve(results);

@@ -2,15 +2,16 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
-// const login = require('./daos/getUserLogin');
-// const signUp = require('./daos/signUp');
 var jwt = require('jsonwebtoken');
+const log4js = require('log4js');
+const logger = log4js.getLogger('Resource getUser.js');
+logger.level = 'debug';
 const apiApp = require('./config/api');
 const config = require('./config/constants');
 
 const app = express();
 const router = express.Router();
-// const port = 3000;
+const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(router);
@@ -25,7 +26,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use('/api', apiApp);
-
-app.listen(3000, () => {
-  console.log(`Server Running on port 3000`);
+app.listen(port, () => {
+logger.info(`Server Running on port ${port}`);
 });
