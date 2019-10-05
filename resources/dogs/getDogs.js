@@ -1,7 +1,7 @@
 'use strict';
 
 const createError = require('http-errors');
-const userServices = require('../../services/users/');
+const userServices = require('../../services/users/getUsers');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Resource getUser.js');
 logger.level = 'debug';
@@ -13,18 +13,18 @@ logger.level = 'debug';
 * @param {Object} res - client response in case toke is invalid or expired
 * @return {object} a JSON response with database records or an error response
 **/
-function getUsers(req, res) {
-  logger.debug('getUsers resource');
+function getDogs(req, res) {
+  logger.debug('getDogs resource');
   // get the users from the database
-  return userServices.getUsers()
+  return userServices()
   .then((userSettings) => {
-    logger.debug('sending the users from the getUsers resource');
+    logger.debug('sending the users from the getDogs resource');
     res.set('Content-Type', 'application/json');
-    res.send({users: userSettings});
+    res.send({dogs: dogSettings});
   })
   .catch((err) => {
     res.send(err);
   });
 }
 
-module.exports = getUsers;
+module.exports = getDogs;
