@@ -9,39 +9,38 @@ const db = require('../config/db.js');
 * @params {string} hash - user password hashed 
 * @return {object} user record
 **/
-
 function signUp(data, hash) {
   return new Promise((resolve, reject) => {
 
     db.getConnection((err, connection) => {
       if (err) { 
-          //Not Connected!
-          reject('DB Connection error'); 
-        } 
+        //Not Connected!
+        reject('DB Connection error'); 
+      } 
 
-        connection.query(`SELECT * FROM users WHERE email = '${data.email}'`, (error, results, fields) => {
+      connection.query(`SELECT * FROM users WHERE email = '${data.email}'`, (error, results, fields) => {
         if(error) { 
           reject(error.message); 
         }
         if(results.length > 0){
           reject(`ERROR: The email ${data.email} already exists!`);
-        }
-
-      //Make a query to insert the new user into the database
-      connection.query(`INSERT INTO users (firstName, lastName, email, password) VALUES ('${data.firstName}', '${data.lastName}','${data.email}', '${hash}')`, function (error, results, fields) {
+        } else {
+          //Make a query to insert the new user into the database
+          connection.query(`INSERT INTO users (firstName, lastName, email, password) VALUES ('${data.firstName}', '${data.lastName}','${data.email}', '${hash}')`, function (error, results, fields) {
        
-       //Release the connection
-        connection.release();
+            //Release the connection
+            connection.release();
 
-        //Handle error
-        if (err) { 
-          reject (err);
-        };
+            //Handle error
+            if (err) { 
+              reject (err);
+            };
 
-        //Resolve the Promise
-        resolve(results);
+            //Resolve the Promise
+            resolve(results);
+          });
+        }
       });
-     });
     });
   });
 }
@@ -77,8 +76,6 @@ function logIn(email) {
     });
   });
 }
-
-
 
 module.exports = { 
   signUp,

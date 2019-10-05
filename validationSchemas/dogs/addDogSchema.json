@@ -1,5 +1,5 @@
 {
-    "description": "Validation for new sign up",
+    "description": "Validation for new dog",
     "properties" : {
         "name": {
             "type": "string",
@@ -9,14 +9,13 @@
         },
         "age": {
             "type": "number",
-            "minLength": 1,
+            "minimum": 1,
             "maxLength": 2,
             "pattern": "\\S+"
         },
         "genre": {
             "type": "string",
-            "minLength": 1,
-            "maxLength": 6,
+            "enum": ["Male", "Female"],
             "pattern": "\\S+"
         },
         "description": {
@@ -24,6 +23,20 @@
             "minLength": 1,
             "maxLength": 150,
             "pattern": "\\S+"
+        },
+        "imgUrl": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 260,
+            "pattern": "\\S+"
         }
-    }
+    },
+    "additionalProperties": false,
+    "required": [
+        "name",
+        "age",
+        "genre",
+        "description",
+        "imgUrl"
+    ]
 }

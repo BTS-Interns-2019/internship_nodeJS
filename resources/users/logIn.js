@@ -6,6 +6,8 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Resource logIn.js');
 logger.level = 'debug';
 
+const dataValidator = require('../../filters/users/logInValidation');
+
 /**
 * getUsers resource
 * use the getUsers service to get all users from the database
@@ -15,15 +17,20 @@ logger.level = 'debug';
 **/
 function logIn(req, res) {
   logger.debug('logIn resource');
-  return userServices.logIn(req.body)
-  .then((data) => {
-    logger.debug('sending the users from the logIn resource');
-    res.set('Content-Type', 'application/json');
-    res.send({logIn: data});
-  })
-  .catch((error) => {
-    res.send(error);
-  });
+
+  const validation = dataValidator(req, res);
+
+  if(validation){
+    return userServices.logIn(req.body)
+    .then((data) => {
+      logger.debug('sending the users from the logIn resource');
+      res.set('Content-Type', 'application/json');
+      res.send({logIn: data});
+    })
+    .catch((error) => {
+      res.send(error);
+    });
+  }
 }
 
 module.exports = logIn;

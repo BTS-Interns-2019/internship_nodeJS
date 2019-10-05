@@ -18,30 +18,30 @@ const dataValidator = require('../../filters/users/newUserValidation');
 **/
 
 function signUp(req, res) {
-    logger.debug('signUp Resource');
+  logger.debug('signUp Resource');
 
-   const validation =  dataValidator(req,res);
-            if (validation === true) { 
+  const validation =  dataValidator(req,res);
+  if (validation === true) { 
 
     //add a new user to the database
     return userServices(req.body)
-        .then((result) => {
-            logger.debug('sending result to adding a new user with the signUp Resource');
-            res.set('content-type', 'application/json');
-            res.send({
-                status: 'success',
-                message: 'User added successfully',
-                data: result,
-            });
-        })
-        .catch((error) => {
-            res.send({
-                status: 'Failure',
-                message: 'An error ocurred adding the new user',
-                data: error,
-            });
-        });
-    };
+    .then((result) => {
+      logger.debug('sending result to adding a new user with the signUp Resource');
+      res.set('content-type', 'application/json');
+      res.send({
+        status: 'success',
+        message: 'User added successfully',
+        data: result,
+      });
+    })
+    .catch((error) => {
+      res.send({
+        status: 'Failure',
+        message: 'An error ocurred adding the new user',
+        data: error,
+      });
+    });
+  };
 }
 
 module.exports = signUp;
