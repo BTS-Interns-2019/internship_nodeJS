@@ -1,18 +1,16 @@
 'use strict';
 
+const log4js = require('log4js');
+
+const logger = log4js.getLogger('Resource getUser.js');
+logger.level = 'debug';
+
 const getTeams = require('../../daos/getTeams');
 /**
   *  @return {Promise}, promise with all teams
  */
-function getTeamsService() {
-  return new Promise((resolve, reject) => {
-    getTeams()
-      .then((results) => {
-        resolve(results);
-      })
-      .catch(err => {
-        reject(err);
-      })
-  });
+async function getTeamsService() {
+  logger.debug('Service to get teams data');
+  return await getTeams();
 }
 module.exports = getTeamsService;

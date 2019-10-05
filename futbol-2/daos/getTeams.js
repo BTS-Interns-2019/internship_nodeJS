@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 const log4js = require('log4js');
 const logger = log4js.getLogger('Resource getUser.js');
 logger.level = 'debug';
@@ -19,8 +19,8 @@ function getTeams() {
         connection.release();
 
         if (err) {
-          logger.error(err)
-          throw err;
+          logger.error(err);
+          reject(err);
         }
         resolve(results);
       });

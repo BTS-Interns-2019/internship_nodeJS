@@ -5,7 +5,7 @@ let metadataValidationData = {
   properties: {
     email: {
       type: 'string',
-      minLength: 1
+      minLength: 1,
     },
     password: {
       type: 'string',
