@@ -19,6 +19,14 @@ function signUp(data, hash) {
           reject('DB Connection error'); 
         } 
 
+        connection.query(`SELECT * FROM users WHERE email = '${data.email}'`, (error, results, fields) => {
+        if(error) { 
+          reject(error.message); 
+        }
+        if(results.length > 0){
+          reject(`ERROR: The email ${data.email} already exists!`);
+        }
+
       //Make a query to insert the new user into the database
       connection.query(`INSERT INTO users (firstName, lastName, email, password) VALUES ('${data.firstName}', '${data.lastName}','${data.email}', '${hash}')`, function (error, results, fields) {
        
@@ -33,6 +41,7 @@ function signUp(data, hash) {
         //Resolve the Promise
         resolve(results);
       });
+     });
     });
   });
 }

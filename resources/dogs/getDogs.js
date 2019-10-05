@@ -17,10 +17,14 @@ function getDogs(req, res) {
   logger.debug('getDogs resource');
   // get the users from the database
   return dogServices()
-  .then((dogSettings) => {
-    logger.debug('sending the users from the getDogs resource');
+  .then((results) => {
+    logger.debug('sending the dogs from the getDogs resource');
     res.set('Content-Type', 'application/json');
-    res.send({dogs: dogSettings});
+    res.send({
+           status: 'success',
+            message: 'Get dogs successfully',
+            data: results,
+    });
   })
   .catch((err) => {
     res.send(err);

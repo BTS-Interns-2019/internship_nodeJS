@@ -2,6 +2,9 @@
 
 const getDogs = require('./getDogs');
 
+const addDogs = require('./addDogs');
+
 module.exports = {
-  getDogs
+  getDogs,
+  addDogs,
 };

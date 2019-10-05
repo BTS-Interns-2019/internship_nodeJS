@@ -1,0 +1,24 @@
+{
+    "type":"object",
+    "description": "Validation for new log in",
+    "properties": {
+      "email": {
+         "type": "string",
+        "format": "email",
+         "minLength": 1,
+        "maxLength": 45,
+        "pattern": "\\S+"
+      },
+      "password": {
+        "type": "string",
+         "minLength": 6,
+        "maxLength": 12,
+        "pattern": "\\S+"
+      }
+    },
+    "additionalProperties":false,
+    "required": [
+      "email",
+      "password"
+    ]
+  }
