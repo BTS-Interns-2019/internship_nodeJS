@@ -1,7 +1,7 @@
 'use strict';
 
 const createError = require('http-errors');
-const dogServices = require('../../services/dogs/addDogs.js');
+const dogServices = require('../../services/dogs');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Resource addDogs.js');
 logger.level = 'debug';
@@ -21,7 +21,7 @@ function addDogs(req, res) {
     if (validation === true) {
 
   // insert the dogs to the database
-  return dogServices(req.body)
+  return dogServices.addDogs(req.body)
   .then((result) => {
     logger.debug('sending result to adding a new dog with the addDog Resource');
             res.set('content-type', 'application/json');

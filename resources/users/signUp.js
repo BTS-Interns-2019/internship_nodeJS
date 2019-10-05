@@ -1,6 +1,6 @@
 'use strict'
 
-const userServices = require('../../services/users/signUp.js')
+const userServices = require('../../services/users');
 const log4js = require('log4js');
 
 const logger = log4js.getLogger('Resource signUp.js');
@@ -24,7 +24,7 @@ function signUp(req, res) {
             if (validation === true) { 
 
     //add a new user to the database
-    return userServices(req.body)
+    return userServices.signUp(req.body)
         .then((result) => {
             logger.debug('sending result to adding a new user with the signUp Resource');
             res.set('content-type', 'application/json');

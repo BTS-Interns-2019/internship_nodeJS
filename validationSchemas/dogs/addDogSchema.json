@@ -1,5 +1,5 @@
 {
-    "description": "Validation for new sign up",
+    "description": "Validation for new dog",
     "properties" : {
         "name": {
             "type": "string",
