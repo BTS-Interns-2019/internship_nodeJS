@@ -1,54 +1,40 @@
 'use stric'
-let express = require('express');
-let bodyParser = require('body-parser');
-let dogs = require('./dogsDB');
-let signUp = require('./signUp');
-let bcrypt = require('bcryptjs');
-let port = 5000;
-let app = express();
+
+require('./loadenv');
+require('./config/db');
+
+const bodyParser = require('body-parser');
+const express = require('express');
+const config = require('./config/constants');
+const apiApp = require('./config/api')
+const port = 5000;
+
+const app = express();
+const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json());
+app.use(router);
 
-app.get('/', (req, res) => {
-    dogs.getDog()
-    .then((record) => {
-      res.set('Content-Type', 'application/json');
-      res.send(record)
-    });
-  });
-
-app.post('/auth/users', (req, res) => {
-  res.set('Content-Type', 'application/json');
-  
-  const { body } = req;
-  if (body.password === body.confirm_password) {
-    bcrypt.genSalt(10, (err, salt) => {
-      if (err) {
-        res.status(400);
-        res.send(err);
-      }
-
-      bcrypt.hash(body.password, salt, (err, hash) => {
-        if (err) {
-          res.status(400);
-          res.send('Error generating the hash. Try again');
-        }
-
-        signUp(body, hash)
-          .then((result) => {
-            res.status(201);
-            res.send(result);
-          }).catch((err) => {
-            res.send(err)
-          })
-      });
-    });
-  } else {
-    res.status(400);
-    res.send('Password does not match');
-  }
+// access-control-allow
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers',
+  `Origin, X-Requested-With, Content-Type, Accept, Authorization`);
+  res.url = req.url;
+  next();
 });
+
+app.use(bodyParser.json({ limit: '25MB' }));
+app.use('/api', apiApp);
+
+// app.get('/', (req, res) => {
+//     dogs.getDog()
+//     .then((record) => {
+//       res.set('Content-Type', 'application/json');
+//       res.send(record)
+//     });
+//   });
   
 
 app.listen(port, (req, res) => {

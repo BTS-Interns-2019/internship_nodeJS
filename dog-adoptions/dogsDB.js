@@ -1,6 +1,6 @@
 'use strict'
 
-const db = require('./db');
+const db = require('./config/db');
 
 
 function getDog() {
