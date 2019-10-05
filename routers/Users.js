@@ -1,14 +1,13 @@
 'use strict'
 
 //Get router
-const usersRouter = require('express').Router();
+const express = require('express')
+const usersRouter = express.Router();
 
 //Get resource
 const users = require('../resources/users');
 //Set routers
-
-// usersRouter.get('/', users.getUsers);
-// usersRouter.post('/', users.signUp);
+usersRouter.post('/', users.signUp);
 usersRouter.post('/login', users.logIn);
 
 

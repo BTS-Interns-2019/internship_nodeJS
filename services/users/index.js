@@ -1,9 +1,11 @@
 'use strict'
 
-const getUsers = require('./getUsers');
-const logIn = require('./logIn');
+// get the services for the users
+const signUp = require('./signUp.js');
+const logIn = require('./logIn.js');
 
+// export functions
 module.exports = {
-  getUsers,
-  logIn
+  signUp,
+  logIn,
 };

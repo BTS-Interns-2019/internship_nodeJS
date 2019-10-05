@@ -5,26 +5,30 @@ const db = require('../config/db.js');
 /**
 * add a new user (signUp method)
 * post an users to the database
+* @params {object} data - contain the user data
+* @params {string} hash - user password hashed 
 * @return {object} user record
 **/
 
 function signUp(data, hash) {
   return new Promise((resolve, reject) => {
 
-    db.getConnection(function(err, connection) {
+    db.getConnection((err, connection) => {
       if (err) { 
           //Not Connected!
           reject('DB Connection error'); 
         } 
 
       //Make a query to insert the new user into the database
-      connection.query(`INSERT INTO users (first_name, last_name, username, password) VALUES ('${data.first_name}', '${data.last_name}','${data.username}', '${hash}')`, function (error, results, fields) {
+      connection.query(`INSERT INTO users (firstName, lastName, email, password) VALUES ('${data.firstName}', '${data.lastName}','${data.email}', '${hash}')`, function (error, results, fields) {
        
        //Release the connection
         connection.release();
 
         //Handle error
-        if (error) { throw error};
+        if (err) { 
+          reject (err);
+        };
 
         //Resolve the Promise
         resolve(results);

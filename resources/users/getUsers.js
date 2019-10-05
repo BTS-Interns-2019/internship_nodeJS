@@ -3,7 +3,7 @@
 const createError = require('http-errors');
 const userServices = require('../../services/users/');
 const log4js = require('log4js');
-const logger = log4js.getLogger('Resource getUser.js');
+const logger = log4js.getLogger('Resource getUsers.js');
 logger.level = 'debug';
 
 /**
