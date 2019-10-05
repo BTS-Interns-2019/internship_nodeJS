@@ -20,7 +20,11 @@ function editarEquipo(req, res) {
   .then((teamSettings) => {
     logger.debug('edit the team resource');
     res.set('Content-Type', 'application/json');
-    res.send({team:teamSettings});
+    res.send({
+      status: 200,
+      message: 'PUT team succesfully',
+      data:teamSettings,
+    });
   })
   .catch((err) => {
     res.send(err);
