@@ -23,7 +23,7 @@ function logIn(body) {
         reject('ERROR: The user no exist.');
       }
 
-      bcrypt.compare(body.email, result.password)
+      bcrypt.compare(body.password, result.password)
       .then((res) => {
         if(!res) { reject('ERROR: Incorrect Password.') }
 
