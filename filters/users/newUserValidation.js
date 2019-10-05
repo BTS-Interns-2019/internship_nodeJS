@@ -7,14 +7,13 @@ const Ajv = new ajv ();
 const logger = log4js.getLogger('Validate Schema SignUp');
 logger.level = 'debug';
 
-const newUserDataSchema = require ('../../validationSchemas/UserPostSchema.json');
+const newUserDataSchema = require ('../../validationSchemas/users/UserPostSchema.json');
 
 /**
- * New user data validator middleware
+ * New user data validator
  * validate the body of the signUp request according to the schema defined
  * @param {object} req - client request with the token included
- * @param {object} res - response depends if the token is invalid or if have expired
- * @param {function} next - callback to invoque the next function
+ * @param {object} res - response depends if the schema is valid or not
  * @param {object} JSON - response with a failure
  */
 

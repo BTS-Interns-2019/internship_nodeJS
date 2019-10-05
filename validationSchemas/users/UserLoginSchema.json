@@ -1,6 +1,6 @@
 {
     "type":"object",
-    "description": "Validation for new sign up",
+    "description": "Validation for new log in",
     "properties": {
       "email": {
          "type": "string",

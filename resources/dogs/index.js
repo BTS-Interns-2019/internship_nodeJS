@@ -2,10 +2,9 @@
 
 const getDogs = require('./getDogs');
 
+const addDogs = require('./addDogs');
+
 module.exports = {
-  getDogs
-<<<<<<< HEAD
+  getDogs,
+  addDogs,
 };
-=======
-};
->>>>>>> fd55c99bc7f1da23ff2a97988c2b588ab7078cda

@@ -1,12 +1,13 @@
 'use strict'
 
 //Get router
-const dogsRouter = require('express').Router();
+const express = require('express');
+const dogsRouter = express.Router();
 
 //Get resource
 const dogs = require('../resources/dogs');
 
 //Set router
-dogsRouter.get('./dog', dogs.getDogs);
+dogsRouter.post('/addDog', dogs.addDogs);
 
 module.exports = dogsRouter;

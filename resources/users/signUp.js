@@ -21,7 +21,7 @@ function signUp(req, res) {
     logger.debug('signUp Resource');
 
    const validation =  dataValidator(req,res);
-            if (validation === true){ 
+            if (validation === true) { 
 
     //add a new user to the database
     return userServices(req.body)

@@ -20,7 +20,9 @@ function signUp(data, hash) {
         } 
 
         connection.query(`SELECT * FROM users WHERE email = '${data.email}'`, (error, results, fields) => {
-        if(error) { reject(error.message); }
+        if(error) { 
+          reject(error.message); 
+        }
         if(results.length > 0){
           reject(`ERROR: The email ${data.email} already exists!`);
         }
