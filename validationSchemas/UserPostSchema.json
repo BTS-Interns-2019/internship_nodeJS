@@ -2,27 +2,43 @@
     "description": "Validation for new sign up",
     "properties": {
       "firstName": {
-        "type": "string"
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20,
+        "pattern": "\\S+"
       },
       "lastName": {
-        "type": "string"
+        "type": "string",
+         "minLength": 1,
+        "maxLength": 20,
+        "pattern": "\\S+"
       },
       "email": {
         "type": "string",
-        "format": "email"
+        "format": "email",
+         "minLength": 1,
+        "maxLength": 45,
+        "pattern": "\\S+"
       },
       "password": {
-        "type": "string"
+        "type": "string",
+         "minLength": 6,
+        "maxLength": 12,
+        "pattern": "\\S+"
       },
       "validatePassword": {
-        "type": "string"
+        "type": "string",
+         "minLength": 6,
+        "maxLength": 12,
+        "pattern": "\\S+"
       }
     },
     "additionalProperties":false,
     "required": [
-      "name",
-      "lasName",
+      "firstName",
+      "lastName",
       "email",
-      "password"
+      "password",
+      "validatePassword"
     ]
   }

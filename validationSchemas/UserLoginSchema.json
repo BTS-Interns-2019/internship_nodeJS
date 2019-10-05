@@ -3,10 +3,17 @@
     "description": "Validation for new sign up",
     "properties": {
       "email": {
-        "type": "string"
+         "type": "string",
+        "format": "email",
+         "minLength": 1,
+        "maxLength": 45,
+        "pattern": "\\S+"
       },
       "password": {
-        "type": "string"
+        "type": "string",
+         "minLength": 6,
+        "maxLength": 12,
+        "pattern": "\\S+"
       }
     },
     "additionalProperties":false,

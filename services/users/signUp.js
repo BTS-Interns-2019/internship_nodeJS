@@ -18,13 +18,15 @@ const userDaos = require('../../daos/userDaos.js');
 *@return {object} return the DataBase confirmation or an error
 */
 
+
+
 function singUp (body) {
     logger.debug('SignUp Service');
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { 
 
         //password and confirm password must be equals
-        //if (body.password === body.validatepassword) {
+       if (body.password === body.validatePassword) {
         bcrypt.hash(body.password, saltRound, (err, hash) => {
           if(err) { 
               reject(err.message)
@@ -38,7 +40,11 @@ function singUp (body) {
                  reject(err);
              });
         });
-   // } 
+    } else {
+        reject({
+            error: 'Passwords not coinciding'
+        });
+    };
    });
 
 }
