@@ -1,6 +1,7 @@
 'use strict'
 
 const bcrypt = require('bcrypt');
+// const bcrypt = require('bcryptjs');
 const log4js = require('log4js');
 
 const logger = log4js.getLogger('Service signUp');

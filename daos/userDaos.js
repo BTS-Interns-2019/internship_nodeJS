@@ -66,9 +66,10 @@ function logIn(email) {
 
         // handle errors
         if (err) {
-          reject(err);
+          reject(err.message);
         }
 
+        console.log(results[0]);
         resolve(results[0]);
       });
     });
@@ -78,6 +79,6 @@ function logIn(email) {
 
 
 module.exports = { 
-    signUp,
-    logIn
-    }
+  signUp,
+  logIn
+}
