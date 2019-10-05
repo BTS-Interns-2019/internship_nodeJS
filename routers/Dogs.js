@@ -9,5 +9,6 @@ const dogs = require('../resources/dogs');
 
 //Set router
 dogsRouter.post('/addDog', dogs.addDogs);
+dogsRouter.get('/getDogs', dogs.getDogs);
 
 module.exports = dogsRouter;

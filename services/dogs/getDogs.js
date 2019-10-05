@@ -1,13 +1,13 @@
 'use strict';
 
-const dogDaos = require('../../daos/dogDaos');
+const dogDaos = require('../../daos/dogDaos.js');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Service getDogs.js');
 logger.level = 'debug';
 
 /**
 * getUsers service
-* use the userDaos to get all users from the database
+* use the dogDaos to get all dogss from the database
 * @return {object} the database records gotten or an error
 **/
 function getDogs() {

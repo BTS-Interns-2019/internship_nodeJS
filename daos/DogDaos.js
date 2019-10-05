@@ -41,6 +41,27 @@ db.getConnection(function(err, connection) {
 });
 };
 
+function getDogs () {
+  return new Promise ((resolve, reject) => {
+    db.getConnection(function (err, connection) {
+      if (err) {
+        reject(err.message);
+      };
+      connection.query('SELECT * FROM dogs', function (error, results, fields) {
+
+        connection.release();
+
+        if (error) {
+          throw error;
+        };
+
+        resolve(results);
+      })
+    })
+  })
+}
+
 module.exports = {
-addDog
+addDog,
+getDogs,
 } 
