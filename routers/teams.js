@@ -6,6 +6,11 @@ const teamsRouter = require('express').Router();
 // get resource (the one sending the responses)
 const teams = require('../resources/teams');
 
+// token validator
+const tokenValidator = require('../filters/tokenValidator');
+
+teamsRouter.put('/:id', tokenValidator);
+
 // get filters
 const teamDataValidator = require('../filters/teams');
 

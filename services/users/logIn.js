@@ -34,6 +34,7 @@ function logIn(body) {
               reject(err);
             } else if (!match) {
               reject({
+                status: 'NO MATCH',
                 message: 'Passwords do not match',
               });
             }

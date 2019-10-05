@@ -31,6 +31,14 @@ function logIn(req, res) {
       });
     })
     .catch((err) => {
+      if (err.hasOwnProperty('status')) {
+        if (err.status === 'NO MATCH') {
+          res.status(400);
+        }
+      } else {
+        res.status(500);
+      }
+
       res.send({
         status: 'failure',
         message: 'There was an error loggin the user',
