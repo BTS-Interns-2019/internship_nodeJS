@@ -5,9 +5,16 @@ const loginDataSchema = {
   properties: {
     email: {
       type: 'string',
+      format: 'email',
+      minLength: 1,
+      maxLength: 300,
+      pattern: '\\S+'
     },
     password: {
       type: 'string',
+      minLength: 1,
+      maxLength: 300,
+      pattern: '\\S+'
     },
   },
   additionalProperties: false,
