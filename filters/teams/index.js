@@ -1,8 +1,6 @@
 'use strict'
 
-//get data validators
+// get data validators
 const updateTeamDataValidator = require('./updateTeamDataValidator');
 
-module.exports = {
-    updateTeamDataValidator,
-}
+module.exports = updateTeamDataValidator;
