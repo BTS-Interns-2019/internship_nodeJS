@@ -57,17 +57,18 @@ This is the *Back-end* portion of the **football web application**.
 
 ### Sign up
 
+#### Expected request body format
 ```json
 "signUp": {
-    "firstName": "string",
-    "lastName": "string",
-    "email": "string",
-    "password": "string",
-    "validatePassword": "string"
+  "firstName": "string",
+  "lastName": "string",
+  "email": "string",
+  "password": "string",
+  "validatePassword": "string"
 }
 ```
-#### Validator schema
 
+#### Validator schema
 ```js
 {
   description: 'Validation for new sign up',
@@ -102,12 +103,14 @@ This is the *Back-end* portion of the **football web application**.
 
 ### Log in
 
+#### Expected request body format
 ```json
 "login": {
-    "email": "string",
-    "password": "string"
+  "email": "string",
+  "password": "string"
 }
 ```
+
 #### Validator schema
 ```js
 {
@@ -130,22 +133,36 @@ This is the *Back-end* portion of the **football web application**.
 
 ### Edit team
 * **Important:** It is not necessary to send the `points`, `games_played` and `goal_difference` fields as their values will be calculated at the time of the update.
+* **Important:** It is vital that the user **must** be logged in to be able to edit the data of a team. In other words, an authentication token must be provided through a header of the request as either `Authorization` or `x-access-token`.
+  * Keep in mind, if using the `Authorization` header, the value must have a `Bearer` string right before the token. The format is then as follows:
+  ```
+  Authorization: Bearer <token>
+  ```
+  * If the token is omitted, a response with the HTTP status code `401: Forbidden` will be sent as well as a JSON with the following format:
+  ```json
+  {
+    "status": "failure",
+    "message": "Authorization token was not provided",
+    "data": {}
+  }
+  ```
 
+#### Expected request body format
 ```json
 "editTeam": {
-    "logo": "string",
-    "name": "string",
-    "location": "string",
-    "stadium": "string",
-    "position": "number",
-    "points": "number",
-    "games_played": "number",
-    "games_won": "number",
-    "games_tied": "number",
-    "games_lost": "number",
-    "goals_in_favor": "number",
-    "goals_against": "number",
-    "goal_difference": "number"
+  "logo": "string",
+  "name": "string",
+  "location": "string",
+  "stadium": "string",
+  "position": "number",
+  "points": "number",
+  "games_played": "number",
+  "games_won": "number",
+  "games_tied": "number",
+  "games_lost": "number",
+  "goals_in_favor": "number",
+  "goals_against": "number",
+  "goal_difference": "number"
 }
 ```
 
