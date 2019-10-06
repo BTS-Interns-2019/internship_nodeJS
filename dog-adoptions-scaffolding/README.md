@@ -1,4 +1,4 @@
-# **Football Project**
+# **Dog Adoption Project**
 
 This is the _Back-end_ portion of the **Give Me a Roof and Puppy-App web application**.
 
