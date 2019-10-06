@@ -21,7 +21,7 @@ const userDaos = require('../../daos/userDaos.js');
 
 
 
-function singUp (body) {
+function signUp (body) {
     logger.debug('SignUp Service');
 
     return new Promise((resolve, reject) => { 
@@ -50,4 +50,4 @@ function singUp (body) {
 
 }
 
-module.exports = singUp;
+module.exports = signUp;

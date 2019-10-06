@@ -11,5 +11,6 @@ const dogs = require('../resources/dogs');
 dogsRouter.post('/addDog', dogs.addDogs);
 dogsRouter.get('/getDogs', dogs.getDogs);
 dogsRouter.put('/editDog/:id', dogs.editDogs);
+dogsRouter.delete('/deleteDog', dogs.deleteDog);
 
 module.exports = dogsRouter;

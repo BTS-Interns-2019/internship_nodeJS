@@ -2,18 +2,18 @@
 
 const dogDaos = require('../../daos/dogDaos.js');
 const log4js = require('log4js');
-const logger = log4js.getLogger('Service getDogs.js');
+const logger = log4js.getLogger('Service deleteDog.js');
 logger.level = 'debug';
 
 /**
-* getDogs service
-* use the dogDaos to get all dogs from the database
+* deleteDog service
+* use the dogDaos to delete the selected dog from the database
 * @return {object} the database records gotten or an error
 **/
-function getDogs() {
-  logger.debug('get dogs service');
+function deleteDog(body) {
+  logger.debug('delete dogs service');
   return new Promise((resolve, reject) => {
-    dogDaos.getDogs()
+    dogDaos.deleteDog(body)
     .then((result) => {
       resolve(result);
     })
@@ -23,4 +23,4 @@ function getDogs() {
   });
 }
 
-module.exports = getDogs;
+module.exports = deleteDog;

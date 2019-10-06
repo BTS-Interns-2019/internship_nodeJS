@@ -1,6 +1,6 @@
 'use strict'
 
-const userServices = require('../../services/users/signUp.js')
+const userServices = require('../../services/users');
 const log4js = require('log4js');
 
 const logger = log4js.getLogger('Resource signUp.js');
@@ -24,24 +24,24 @@ function signUp(req, res) {
   if (validation === true) { 
 
     //add a new user to the database
-    return userServices(req.body)
-    .then((result) => {
-      logger.debug('sending result to adding a new user with the signUp Resource');
-      res.set('content-type', 'application/json');
-      res.send({
-        status: 'success',
-        message: 'User added successfully',
-        data: result,
-      });
-    })
-    .catch((error) => {
-      res.send({
-        status: 'Failure',
-        message: 'An error ocurred adding the new user',
-        data: error,
-      });
-    });
-  };
+    return userServices.signUp(req.body)
+        .then((result) => {
+            logger.debug('sending result to adding a new user with the signUp Resource');
+            res.set('content-type', 'application/json');
+            res.send({
+                status: 'success',
+                message: 'User added successfully',
+                data: result,
+            });
+        })
+        .catch((error) => {
+            res.send({
+                status: 'Failure',
+                message: 'An error ocurred adding the new user',
+                data: error,
+            });
+        });
+    };
 }
 
 module.exports = signUp;

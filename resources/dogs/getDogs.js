@@ -1,7 +1,7 @@
 'use strict';
 
 const createError = require('http-errors');
-const dogServices = require('../../services/dogs/getDogs.js');
+const dogServices = require('../../services/dogs');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Resource getDogs.js');
 logger.level = 'debug';
@@ -16,7 +16,7 @@ logger.level = 'debug';
 function getDogs(req, res) {
   logger.debug('getDogs resource');
   // get the users from the database
-  return dogServices()
+  return dogServices.getDogs()
   .then((results) => {
     logger.debug('sending the dogs from the getDogs resource');
     res.set('Content-Type', 'application/json');

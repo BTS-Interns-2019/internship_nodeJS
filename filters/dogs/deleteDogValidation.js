@@ -4,10 +4,10 @@ const ajv = require('ajv');
 const log4js = require('log4js');
 
 const Ajv = new ajv ();
-const logger = log4js.getLogger('Validate Schema to add a New dog');
+const logger = log4js.getLogger('Validate Schema to delete a dog');
 logger.level = 'debug';
 
-const newDogDataSchema = require ('../../validationSchemas/dogs/addDogSchema.json');
+const deleteDogDataSchema = require ('../../validationSchemas/dogs/deleteDogSchema.json');
 
 /**
  * New user data validator
@@ -17,16 +17,16 @@ const newDogDataSchema = require ('../../validationSchemas/dogs/addDogSchema.jso
  * @param {object} JSON - response with a failure
  */
 
- function newDataValidator (req,res) {
-     logger.debug('Validate the new dog data against the JSON schema defined');
-     const validated = Ajv.validate(newDogDataSchema, req.body);
+ function deleteDogDataValidator (req,res) {
+     logger.debug('Validate the delete dog data against the JSON schema defined');
+     const validated = Ajv.validate(deleteDogDataSchema, req.body);
 
      if(!validated) {
-         logger.error('New dog data is not valid');
+         logger.error('Delete dog data is not valid');
          res.status(400);
          res.send({
              status: 'failure',
-             message: 'The AddDog data is not valid',
+             message: 'The deleteDog data is not valid',
              data: Ajv.errors,
          });
      } else {
@@ -34,4 +34,4 @@ const newDogDataSchema = require ('../../validationSchemas/dogs/addDogSchema.jso
      }
  }
 
- module.exports = newDataValidator;
+ module.exports = deleteDogDataValidator;
