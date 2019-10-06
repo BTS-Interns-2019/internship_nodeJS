@@ -10,18 +10,22 @@ const updateTeamSchema = {
     name: {
       type: 'string',
       minLength: 1,
+      maxLength: 120,
     },
     location: {
       type: 'string',
       minLength: 1,
+      maxLength: 120,
     },
     stadium: {
       type: 'string',
       minLength: 1,
+      maxLength: 120,
     },
     position: {
       type: 'string',
       minLength: 1,
+      maxLength: 30,
     },
     games_won: {
       type: 'number',
