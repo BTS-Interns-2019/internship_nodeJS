@@ -1,3 +1,5 @@
+'use strict'
+
 const userServices = require('../../services/users/addUsers');
 
 /**

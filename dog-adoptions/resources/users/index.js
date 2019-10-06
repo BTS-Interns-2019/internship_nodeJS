@@ -6,5 +6,5 @@ const logIn = require ('./logIn');
 
 module.exports = {
   addUsers,
-  loggIn,
+  logIn,
 };
