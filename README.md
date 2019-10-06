@@ -129,6 +129,7 @@ This is the *Back-end* portion of the **football web application**.
 ```
 
 ### Edit team
+* **Important:** It is not necessary to send the `points`, `games_played` and `goal_difference` fields as their values will be calculated at the time of the update.
 
 ```json
 "editTeam": {
@@ -150,6 +151,51 @@ This is the *Back-end* portion of the **football web application**.
 
 #### Validator schema
 ```js
+{
+  description: 'Validation for update team',
+  properties: {
+    logo: {
+      type: 'string',
+      minLength: 1,
+    },
+    name: {
+      type: 'string',
+      minLength: 1,
+    },
+    location: {
+      type: 'string',
+      minLength: 1,
+    },
+    stadium: {
+      type: 'string',
+      minLength: 1,
+    },
+    position: {
+      type: 'string',
+      minLength: 1,
+    },
+    games_won: {
+      type: 'number',
+      minimum: 0,
+    },
+    games_tied: {
+      type: 'number',
+      minimum: 0,
+    },
+    games_lost: {
+      type: 'number',
+      minimum: 0,
+    },
+    goals_in_favor: {
+      type: 'number',
+      minimum: 0,
+    },
+    goals_against: {
+      type: 'number',
+      minimum: 0,
+    },
+  },
+}
 ```
 
 --------------------------
@@ -176,5 +222,5 @@ This is the *Back-end* portion of the **football web application**.
 }
 ```
 
-+ The message field in the response contains an informative message that describes the interaction of the successful or error response.
-+ The data field in the response contains the result obtained of the request. It's all information requested and presented in an object type.
++ The `message` property in the response contains an informative message that describes the interaction of the successful or error response.
++ The `data` property in the response contains the result obtained of the request. It's all information requested and presented in an object type.
