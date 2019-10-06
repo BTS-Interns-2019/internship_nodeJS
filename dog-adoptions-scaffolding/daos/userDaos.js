@@ -17,6 +17,26 @@ function addUsers(data, hash) {
   });
 }
 
+/**
+ * 
+ * @param {string} email email of the user
+ */
+function getUserByEmail(email){
+  return new Promise((resolve, reject) => {
+    db.getConnection((err, connection) => {
+      if (err) reject (err);
+      connection.query(
+        'SELECT * FROM users WHERE email = ?', [ email ], (err, result, fields) => {        
+          connection.release();   
+          // console.log('resultado: '+result);
+          if (err) reject (err);
+          resolve(result[0]);
+        })
+    });
+  });
+}
+
 module.exports = {
-  addUsers
+  addUsers,
+  getUserByEmail
 };

@@ -7,5 +7,6 @@ const usersRouter = require('express').Router();
 const users = require('../resources/users');
 
 usersRouter.post('/user', users.addUsers);
+usersRouter.post('/login', users.logIn);
 
 module.exports = usersRouter;
