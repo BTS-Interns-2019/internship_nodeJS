@@ -1,5 +1,8 @@
 'use strict'
 
+require('./loadenv');
+require('./config/db');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 // const login = require('./daos/getUserLogin');
@@ -28,4 +31,5 @@ app.use('/api', apiApp);
 
 app.listen(3000, () => {
   console.log(`Server Running on port 3000`);
+  console.log();
 });
