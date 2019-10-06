@@ -2,7 +2,7 @@
   
 const log4js = require('log4js');
 
-const logger = log4js.getLogger('Resource getUser.js');
+const logger = log4js.getLogger('Resource signUp.js');
 logger.level = 'debug';
 const addUser= require('../../daos/signUp');
 
@@ -17,7 +17,7 @@ function signUp(body) {
         resolve(result);
       })
       .catch((err) => {
-        logger.debug('Getting messager for invalid user data from DB');
+        logger.debug('Sending messager for invalid user data from DB');
         reject(err);
       });
   });

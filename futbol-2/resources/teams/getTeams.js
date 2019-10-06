@@ -2,7 +2,7 @@
 
 const log4js = require('log4js');
 
-const logger = log4js.getLogger('Resource getUser.js');
+const logger = log4js.getLogger('Resource getTeam.js');
 logger.level = 'debug';
 
 const getTeamsService = require('../../services/teams/getTeamsService');
@@ -26,7 +26,7 @@ async function getTeams(req, res) {
       data: results,
     });
   } catch (err) {
-    logger.debug('Responding error trying to get data from DB');
+    logger.debug('Responding an error, trying to get data from DB');
     res.status(404);
     res.send({
       status: err.statusCode,

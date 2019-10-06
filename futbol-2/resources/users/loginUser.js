@@ -3,7 +3,7 @@
 const Validator = require('jsonschema').Validator;
 const log4js = require('log4js');
 
-const logger = log4js.getLogger('Resource getUser.js');
+const logger = log4js.getLogger('Resource loginUser.js');
 logger.level = 'debug';
 
 const loginUserService = require('../../services/users/loginUser');
@@ -35,7 +35,7 @@ function loginUser(req, res) {
         });
       })
       .catch((err) => {
-        logger.debug('Error trying to get token, wrong credentials');
+        logger.error('Error trying to get token, wrong credentials');
         res.status(err.statusCode);
         res.send({
           status: err.statusCode,

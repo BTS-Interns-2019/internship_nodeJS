@@ -3,7 +3,7 @@
 const bcrypt = require('bcryptjs');
 const createError = require('http-errors');
 const log4js = require('log4js');
-const logger = log4js.getLogger('Resource getUser.js');
+const logger = log4js.getLogger('Resource signUp.js');
 logger.level = 'debug';
 const db = require('../config/db');
 

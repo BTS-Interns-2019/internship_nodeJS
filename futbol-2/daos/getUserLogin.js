@@ -2,7 +2,7 @@
 
 const log4js = require('log4js');
 
-const logger = log4js.getLogger('Resource getUser.js');
+const logger = log4js.getLogger('Resource getLoginUser.js');
 logger.level = 'debug';
 
 const createError = require('http-errors');
