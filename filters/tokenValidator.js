@@ -1,7 +1,7 @@
 'use strict';
 
-
-const jwt = require('jwt-simple');
+const jwt = require('jsonwebtoken')
+//const jwt = require('jwt-simple');
 const config = require('../config/constants');
 const createError = require('http-errors');
 const log4js = require('log4js');
@@ -20,7 +20,7 @@ logger.level = 'debug';
 function tokenValidator(req, res, next) {
   logger.debug('token validator');
   let token = req.header('Authorization') || req.header('x-access-token');
-  console.log(config.TOKEN_SECRET)
+  console.log(token)
   if(!token) {
      logger.fatal('token does not exist');
         res.status(401);
@@ -29,11 +29,10 @@ function tokenValidator(req, res, next) {
           message: 'Authorization token forbidden',
           data: 'Forbidden'
         }); 
-      } else {
-         if (token.startsWith('Bearer ')) {
+      } //if (token.startsWith('Bearer ')) {
               token = token.slice(7, token.length);
-           }
-
+             
+           console.log(token)
   if (token) {
     logger.debug('Verifying token');
     jwt.verify(token, config.TOKEN_SECRET, (err, decoded) => {
@@ -59,7 +58,7 @@ function tokenValidator(req, res, next) {
       data: {}
     });
   };
-};
+//};
 };
 
 module.exports = tokenValidator;

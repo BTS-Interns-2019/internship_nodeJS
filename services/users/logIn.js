@@ -6,7 +6,8 @@ const logger = log4js.getLogger('Service getUser.js');
 const config = require('../../config/constants')
 //const bcrypt = require('bcryptjs');
 const bcrypt = require('bcrypt')
-const jwt = require('jwt-simple');
+//const jwt = require('jwt-simple');
+const jwt = require('jsonwebtoken');
 
 logger.level = 'debug';
 
@@ -30,8 +31,7 @@ function logIn(body) {
         if(!res) { 
           reject('ERROR: Incorrect Password.') 
         } else {
-         const token = jwt.encode(body.password, config.TOKEN_SECRET);
-         console.log(config.TOKEN_SECRET)
+         const token = jwt.sign(body, config.TOKEN_SECRET);
          resolve(token);
         };
 
