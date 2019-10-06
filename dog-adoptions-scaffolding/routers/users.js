@@ -6,7 +6,7 @@ const usersRouter = require('express').Router();
 // get resource
 const users = require('../resources/users');
 
-const userDataValidator = require('../filters/users');
+const userDataValidator = require('../filters/user');
 
 // JSON schema validator middleware
 usersRouter.post('/user', userDataValidator.addUserDataValidator);

@@ -28,7 +28,7 @@ const newUserSchema = {
       maxLength: 300,
       pattern: '\\S+'
     },
-    validatePassword: {
+    confirm_password: {
       type: 'string',
       minLength: 1,
       maxLength: 300,
@@ -37,11 +37,11 @@ const newUserSchema = {
   },
   additionalProperties: false,
   required: [
-    'firstName',
+    'name',
     'lastName',
     'email',
     'password',
-    'validatePassword',
+    'confirm_password',
   ],
 };
 

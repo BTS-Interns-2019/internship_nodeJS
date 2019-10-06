@@ -20,8 +20,6 @@ const dogsDataSchema = {
     imgUrl: {
       type: 'string',
       minLength: 1,
-      maxLength: 16777215,
-      pattern: '\\S+'
     }
   },
   additionalProperties: false,

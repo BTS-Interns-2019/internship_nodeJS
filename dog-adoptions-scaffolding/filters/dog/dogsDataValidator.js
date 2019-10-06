@@ -9,7 +9,7 @@ const logger = log4js.getLogger('Schema add dogs');
 logger.level = 'debug';
 
 // get schema
-const dogsDataValidator = require('../../validationSchemas/dogsDataValidatorSchema');
+const dogsDataSchema = require('../../validationSchemas/dogsDataValidatorSchema');
 
 /**
  * addDogDataValidator middleware
@@ -21,7 +21,7 @@ const dogsDataValidator = require('../../validationSchemas/dogsDataValidatorSche
  */
 function dogsAddDataValidator(req, res, next) {
   logger.debug('validate dogs data against JSON schema');
-  const valid = ajv.validate(dogsDataValidator, req.body);
+  const valid = ajv.validate(dogsDataSchema, req.body);
 
   if (!valid) {
     logger.error('dog data not valid');
@@ -37,4 +37,6 @@ function dogsAddDataValidator(req, res, next) {
   }
 }
 
-module.exports = dogsAddDataValidator;
+module.exports = {
+  dogsAddDataValidator
+}

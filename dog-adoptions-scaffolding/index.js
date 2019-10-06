@@ -38,3 +38,5 @@ app.use('/api', apiApp);
 app.listen(config.APP_PORT, () => {
   logger.info(`Listening to port ${config.APP_PORT} in ${config.ENV} environment`);
 });
+
+module.exports = app;
