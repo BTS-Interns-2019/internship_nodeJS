@@ -26,7 +26,7 @@ This is the _Back-end_ portion of the **Give Me a Roof and Puppy-App web applica
     </tr>
     <tr>
         <td>Log In</td>
-        <td>/api/user/auth/login</td>
+        <td>/api/auth/login</td>
         <td>POST</td>
     </tr>
     <tr>
