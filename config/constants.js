@@ -9,4 +9,5 @@ module.exports = {
   APP_PORT: process.env.APP_PORT,
   ENV: process.env.ENV,
   DB_PORT: process.env.DB_PORT,
+  TOKEN_SECRET: process.env.TOKEN_SECRET,
 };

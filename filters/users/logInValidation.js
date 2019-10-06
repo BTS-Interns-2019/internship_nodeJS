@@ -16,7 +16,7 @@ const logInDataSchema = require ('../../validationSchemas/users/UserLoginSchema.
  * @param {object} res - response depends if the schema is valid or not
  * @param {object} JSON - response with a failure
  */
-function logInValidator (req, res) {
+function logInValidator (req, res, next) {
   logger.debug('Validate the new user data against the JSON schema defined');
   const validated = Ajv.validate(logInDataSchema, req.body);
 
@@ -28,7 +28,9 @@ function logInValidator (req, res) {
       message: 'The LogIn data is not valid',
       data: Ajv.errors,
     });
-  } 
+  } else {
+    next();
+  }
 }
 
 module.exports = logInValidator;

@@ -70,7 +70,6 @@ function logIn(email) {
           reject(err.message);
         }
 
-        console.log(results[0]);
         resolve(results[0]);
       });
     });

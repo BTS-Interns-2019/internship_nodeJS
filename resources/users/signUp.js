@@ -7,8 +7,6 @@ const logger = log4js.getLogger('Resource signUp.js');
 logger.level = 'debug';
 
 
-const dataValidator = require('../../filters/users/newUserValidation');
-
 /**
 * Create a user (signUp) resource
 * use the signUp service to get add a new user to the database
@@ -19,9 +17,6 @@ const dataValidator = require('../../filters/users/newUserValidation');
 
 function signUp(req, res) {
   logger.debug('signUp Resource');
-
-  const validation =  dataValidator(req,res);
-  if (validation === true) { 
 
     //add a new user to the database
     return userServices.signUp(req.body)
@@ -41,7 +36,6 @@ function signUp(req, res) {
                 data: error,
             });
         });
-    };
 }
 
 module.exports = signUp;

@@ -5,7 +5,23 @@ const express = require('express');
 const dogsRouter = express.Router();
 
 //Get resource
-const dogs = require('../resources/dogs');
+const dogs = require('../resources/dogs'); 
+
+//Get de filters
+const dataDogValidation = require('../filters/dogs');
+const tokenValidation = require('../filters/tokenValidator');
+
+dogsRouter.post('/addDog', tokenValidation);
+dogsRouter.get('/getDogs', tokenValidation);
+dogsRouter.put('/editDog/:id', tokenValidation);
+dogsRouter.delete('/deleteDog', tokenValidation);
+
+
+//Set the schema validation as a middleware
+dogsRouter.post('/addDog', dataDogValidation.newDogValidation);
+dogsRouter.put('/editDog/:id', dataDogValidation.newDogValidation);
+dogsRouter.delete('/deleteDog', dataDogValidation.deleteDogValidation);
+
 
 //Set router
 dogsRouter.post('/addDog', dogs.addDogs);

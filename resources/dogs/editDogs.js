@@ -6,7 +6,6 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Resource editDogs.js');
 logger.level = 'debug';
 
-const dataValidator = require('../../filters/dogs/newDogValidation');
 /**
 * addDogs resource
 * use the addDogs to get create all dogs from the database
@@ -17,8 +16,6 @@ const dataValidator = require('../../filters/dogs/newDogValidation');
 function editDog(req, res) {
   logger.debug('editDogs Resource');
 
-  const validation = dataValidator(req, res);
-  if (validation === true) {
     // insert the dogs to the database
     return dogServices(req.body, req.params.id)
     .then((result) => {
@@ -37,7 +34,6 @@ function editDog(req, res) {
         data: error,
       });
     });
-  };
 }
 
 module.exports = editDog;

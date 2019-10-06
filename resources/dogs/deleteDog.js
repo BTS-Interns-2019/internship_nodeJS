@@ -6,7 +6,6 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Resource deleteDog.js');
 logger.level = 'debug';
 
-const dataValidator = require('../../filters/dogs/deleteDogValidation');
 /**
 * addDogs resource
 * use the addDogs to get create all dogs from the database
@@ -16,9 +15,6 @@ const dataValidator = require('../../filters/dogs/deleteDogValidation');
 **/
 function deleteDog(req, res) {
   logger.debug('deleteDog Resource');
-
-  const validation = dataValidator(req,res);
-    if (validation === true) {
 
   // insert the dogs to the database
   return dogServices.deleteDog(req.body)
@@ -38,7 +34,6 @@ function deleteDog(req, res) {
         data: error,
         });
   });
-};
 }
 
 module.exports = deleteDog;

@@ -17,7 +17,7 @@ const deleteDogDataSchema = require ('../../validationSchemas/dogs/deleteDogSche
  * @param {object} JSON - response with a failure
  */
 
- function deleteDogDataValidator (req,res) {
+ function deleteDogDataValidator (req,res, next) {
      logger.debug('Validate the delete dog data against the JSON schema defined');
      const validated = Ajv.validate(deleteDogDataSchema, req.body);
 
@@ -30,7 +30,7 @@ const deleteDogDataSchema = require ('../../validationSchemas/dogs/deleteDogSche
              data: Ajv.errors,
          });
      } else {
-         return true;
+         next();
      }
  }
 

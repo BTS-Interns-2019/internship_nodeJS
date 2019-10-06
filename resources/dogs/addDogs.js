@@ -6,7 +6,6 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Resource addDogs.js');
 logger.level = 'debug';
 
-const dataValidator = require('../../filters/dogs/newDogValidation');
 /**
 * addDogs resource
 * use the addDogs to get create all dogs from the database
@@ -16,9 +15,6 @@ const dataValidator = require('../../filters/dogs/newDogValidation');
 **/
 function addDogs(req, res) {
   logger.debug('addDogs Resource');
-
-  const validation = dataValidator(req,res);
-  if (validation === true) {
 
   // insert the dogs to the database
   return dogServices.addDogs(req.body)
@@ -38,7 +34,6 @@ function addDogs(req, res) {
         data: error,
       });
     });
-  };
 }
 
 module.exports = addDogs;

@@ -17,7 +17,7 @@ const newUserDataSchema = require ('../../validationSchemas/users/UserPostSchema
  * @param {object} JSON - response with a failure
  */
 
- function newUserValidator (req,res) {
+ function newUserValidator (req, res, next) {
      logger.debug('Validate the new user data against the JSON schema defined');
      const validated = Ajv.validate(newUserDataSchema, req.body);
 
@@ -30,7 +30,7 @@ const newUserDataSchema = require ('../../validationSchemas/users/UserPostSchema
              data: Ajv.errors,
          });
      } else {
-         return true;
+         return next();
      }
  }
 

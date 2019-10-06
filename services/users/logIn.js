@@ -3,7 +3,9 @@
 const userDaos = require('../../daos/userDaos');
 const log4js = require('log4js');
 const logger = log4js.getLogger('Service getUser.js');
-const bcrypt = require('bcryptjs');
+const config = require('../../config/constants')
+//const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt')
 const jwt = require('jwt-simple');
 
 logger.level = 'debug';
@@ -21,18 +23,24 @@ function logIn(body) {
     .then((result) => {
       if(result === ''){
         reject('ERROR: The user no exist.');
-      }
+      } else {
 
       bcrypt.compare(body.password, result.password)
       .then((res) => {
-        if(!res) { reject('ERROR: Incorrect Password.') }
+        if(!res) { 
+          reject('ERROR: Incorrect Password.') 
+        } else {
+         const token = jwt.encode(body.password, config.TOKEN_SECRET);
+         console.log(config.TOKEN_SECRET)
+         resolve(token);
+        };
 
-        const token = jwt.encode(body.password, 'secret');
-        resolve(token);
+        
       });
+    }
     })
     .catch((err) => {
-      
+      reject(err);
     });
   });
 }

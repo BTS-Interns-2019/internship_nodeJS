@@ -17,7 +17,7 @@ const newDogDataSchema = require ('../../validationSchemas/dogs/addDogSchema.jso
  * @param {object} JSON - response with a failure
  */
 
- function newDataValidator (req,res) {
+ function newDataValidator (req, res, next) {
      logger.debug('Validate the new dog data against the JSON schema defined');
      const validated = Ajv.validate(newDogDataSchema, req.body);
 
@@ -30,7 +30,7 @@ const newDogDataSchema = require ('../../validationSchemas/dogs/addDogSchema.jso
              data: Ajv.errors,
          });
      } else {
-         return true;
+         next();
      }
  }
 

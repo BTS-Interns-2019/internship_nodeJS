@@ -4,8 +4,9 @@
 const jwt = require('jwt-simple');
 const config = require('../config/constants');
 const createError = require('http-errors');
-const logger = require('log4js');
+const log4js = require('log4js');
 
+const logger = log4js.getLogger('Filter token validator.js');
 logger.level = 'debug';
 
 /**
@@ -18,6 +19,47 @@ logger.level = 'debug';
 **/
 function tokenValidator(req, res, next) {
   logger.debug('token validator');
-}
+  let token = req.header('Authorization') || req.header('x-access-token');
+  console.log(config.TOKEN_SECRET)
+  if(!token) {
+     logger.fatal('token does not exist');
+        res.status(401);
+        res.send({
+          status: 'failure',
+          message: 'Authorization token forbidden',
+          data: 'Forbidden'
+        }); 
+      } else {
+         if (token.startsWith('Bearer ')) {
+              token = token.slice(7, token.length);
+           }
+
+  if (token) {
+    logger.debug('Verifying token');
+    jwt.verify(token, config.TOKEN_SECRET, (err, decoded) => {
+      if (err) {
+        logger.fatal('Provided token did not match');
+        res.status(401);
+        res.send({
+          status: 'failure',
+          message: 'Authorization token does not match',
+          data: err
+        }); 
+      };
+      logger.debug('Token valid');
+      req.decoded = decoded;
+      next ();
+    });
+  } else {
+    logger.fatal('Token was not provided');
+    res.status(401);
+    res.send({
+      status: 'failure',
+      message: 'Authorization token was not provided',
+      data: {}
+    });
+  };
+};
+};
 
 module.exports = tokenValidator;

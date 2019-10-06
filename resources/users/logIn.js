@@ -6,7 +6,6 @@ const log4js = require('log4js');
 const logger = log4js.getLogger('Resource logIn.js');
 logger.level = 'debug';
 
-const dataValidator = require('../../filters/users/logInValidation');
 
 /**
 * getUsers resource
@@ -18,19 +17,26 @@ const dataValidator = require('../../filters/users/logInValidation');
 function logIn(req, res) {
   logger.debug('logIn resource');
 
-  const validation = dataValidator(req, res);
-
-  if(validation){
     return userServices.logIn(req.body)
-    .then((data) => {
+    .then((result) => {
       logger.debug('sending the users from the logIn resource');
       res.set('Content-Type', 'application/json');
-      res.send({logIn: data});
+      res.send({
+        status: 'success',
+        message: 'User logged in successfully',
+        data: {
+          token: result
+        }
+        });
     })
     .catch((error) => {
-      res.send(error);
+      res.send({
+        status: 'failure',
+        message: 'Error while try to log in',
+        data: error
+      });
     });
-  }
+
 }
 
 module.exports = logIn;
