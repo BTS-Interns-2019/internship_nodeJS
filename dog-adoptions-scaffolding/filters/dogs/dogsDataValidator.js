@@ -19,7 +19,7 @@ const dogsDataValidator = require('../../validationSchemas/dogsDataValidatorSche
  * @param {function} next - callback to the next middleware
  * @return {object} JSON response with failure
  */
-function dogsDataValidator(req, res, next) {
+function dogsAddDataValidator(req, res, next) {
   logger.debug('validate dogs data against JSON schema');
   const valid = ajv.validate(dogsDataValidator, req.body);
 
@@ -37,4 +37,4 @@ function dogsDataValidator(req, res, next) {
   }
 }
 
-module.exports = dogsDataValidator;
+module.exports = dogsAddDataValidator;
