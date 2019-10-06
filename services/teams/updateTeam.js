@@ -21,6 +21,8 @@ function updateTeam(teamId, newData) {
     teamDaos.updateTeam(teamId, newData)
       .then(() => teamDaos.getTeam(teamId))
       .then((data) => {
+        // remove team_id property
+        delete data.team_id;
         resolve(data);
       })
       .catch((err) => {

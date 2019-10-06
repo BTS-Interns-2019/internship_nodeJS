@@ -14,7 +14,7 @@ function signUp(data, hash) {
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
       if (err) {
-        reject('Error connecting to the database');
+        reject(err);
       }
 
       const query = `INSERT INTO users (name, last_name, email, password) VALUES ('${data.firstName}','${data.lastName}','${data.email}','${hash}')`;
@@ -42,7 +42,7 @@ function logIn(email) {
   return new Promise((resolve, reject) => {
     db.getConnection((err, connection) => {
       if (err) {
-        reject('Error connecting to the database');
+        reject(err);
       }
 
       // make query to catch valid users

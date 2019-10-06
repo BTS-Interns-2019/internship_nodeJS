@@ -19,6 +19,10 @@ const updateTeamSchema = {
       type: 'string',
       minLength: 1,
     },
+    position: {
+      type: 'string',
+      minLength: 1,
+    },
     games_won: {
       type: 'number',
       minimum: 0,
