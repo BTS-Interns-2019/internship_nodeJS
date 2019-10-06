@@ -19,7 +19,7 @@ function getDogs(req, res) {
     .then((result) => {
       logger.debug('sending result of get Dogs with the getDogs resource');
       res.set('Content-Type', 'application/json');
-      res.status(201);
+      res.status(200);
       res.send({
         status: 'success',
         message: 'Showing dogs successfully',

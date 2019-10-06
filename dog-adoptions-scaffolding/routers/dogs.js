@@ -7,6 +7,7 @@ const dogsRouter = require('express').Router();
 const dogs = require('../resources/dogs');
 
 dogsRouter.get('/', dogs.getDogs);
-dogsRouter.post('/add', dogs.addDogs)
+dogsRouter.post('/add', dogs.addDogs);
+dogsRouter.delete('/:id', dogs.deleteDogs);
 
 module.exports = dogsRouter;

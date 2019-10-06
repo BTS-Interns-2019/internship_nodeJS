@@ -37,7 +37,31 @@ function addDogs(data) {
 }
 
 
+/**
+* deleteDogs method
+* delete a dog to the database
+* @return {object} database records
+**/
+function deleteDogs(idDog) {
+  return new Promise((resolve, reject) => {
+
+    db.query(`SELECT * FROM dogs WHERE id = '${idDog}'` , function (error, results, fields) {
+      if(error) { 
+          reject(error.message); 
+      }
+      if(results.length === 0){
+        reject(`ERROR: The id ${idDog} don't exists!`);
+      }
+    db.query(`DELETE FROM dogs WHERE id = ${idDog}`, function(error, results, fields) {
+      if (error) { reject(error) }
+      resolve(results);
+    });
+    })  
+  })
+}
+
 module.exports = {
   getDogs,
-  addDogs 
+  addDogs,
+  deleteDogs 
 }
