@@ -21,13 +21,14 @@ function tokenValidator(req, res, next) {
   logger.debug('token validator');
   let token = req.header('Authorization') || req.header('x-access-token');
 
-  if (token.startsWith('Bearer ')) {
-    // remove 'Bearer' from token
-    token = token.slice(7, token.length);
-  }
-
   if (token) {
     logger.debug('verifying token');
+    
+    if (token.startsWith('Bearer ')) {
+      // remove 'Bearer' from token
+      token = token.slice(7, token.length);
+    }
+
     jwt.verify(token, config.TOKEN_SECRET, (err, decoded) => {
       if (err) {
         logger.fatal('token provided does not match');
