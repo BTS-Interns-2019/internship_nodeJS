@@ -21,8 +21,10 @@ function tokenValidator(user) {
 }
 
 function validateToken(token) {
+  const toValidate = token.authorization.split(' ')[1];
+  
   return new Promise((resolve, reject) => {
-    jwt.verify(token, config.TOKEN_SECRET, (error) => {
+    jwt.verify(toValidate, config.TOKEN_SECRET, (error) => {
       if (error) {
         reject(false)
       } else {

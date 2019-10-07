@@ -8,11 +8,13 @@ const logger = log4js.getLogger('Resource resource/GetTeam')
 logger.level = 'debug';
 
 async function getTeam(req, res) {
+    console.log('id: ', req.params.id);
+    
   logger.debug('Get the team from service');
   res.set('Content-Type', 'application/json');
   logger.debug('Getting team from service');
   try {
-    const tokenV = await validateToken();
+    const tokenV = await validateToken(req.headers);
     if (tokenV && req.params.id) {
       return getTeamService(req.params.id)
         .then( (team) => {
@@ -39,3 +41,5 @@ async function getTeam(req, res) {
     })
   }
 }
+
+module.exports = getTeam;
