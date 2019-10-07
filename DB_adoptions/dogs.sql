@@ -22,7 +22,7 @@
 DROP TABLE IF EXISTS `dogs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `equipo` (
+CREATE TABLE `dogs` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `age` int(2) DEFAULT NULL,
