@@ -20,5 +20,5 @@ try {
       break;
   }
 } catch (e) {
-  dotenv.load({ path: path.resolve('.env.default') });
+  dotenv.config({ path: path.resolve('.env.default') });
 }

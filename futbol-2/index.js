@@ -1,5 +1,8 @@
 'use strict'
 
+require('./loadenv');
+require('./config/db');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 var jwt = require('jsonwebtoken');
@@ -26,6 +29,7 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json());
 app.use('/api', apiApp);
+
 app.listen(port, () => {
-logger.info(`Server Running on port ${port}`);
+  logger.info(`Server Running on port ${port}`);
 });

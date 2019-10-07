@@ -24,9 +24,10 @@ function addUser(user) {
       bcrypt
         .hash(user.password, 5)
         .then((res) => {
+          console.log(user);
           user.password = res;
           connection.query(
-            `INSERT INTO user (email, password) values ('${user.email}','${user.password}')`,
+            `INSERT INTO user (first_name, last_name, email, password) values ('${user.first_name}', '${user.last_name}', '${user.email}','${user.password}')`,
             (error, results, fields) => {
               connection.release();
               if (error) {

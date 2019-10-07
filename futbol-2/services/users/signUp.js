@@ -13,6 +13,7 @@ function signUp(body) {
   return new Promise((resolve, reject) => {
     addUser(body)
       .then((result) => {
+        console.log(body);
         logger.debug('Getting user validation form DB');
         resolve(result);
       })
