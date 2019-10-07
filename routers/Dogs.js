@@ -12,7 +12,7 @@ const dataDogValidation = require('../filters/dogs');
 const tokenValidation = require('../filters/tokenValidator');
 
 dogsRouter.post('/addDog', tokenValidation);
-// dogsRouter.get('/getDogs', tokenValidation);
+dogsRouter.get('/getDogs', tokenValidation);
 dogsRouter.put('/editDog/:id', tokenValidation);
 dogsRouter.delete('/deleteDog/:name', tokenValidation);
 
@@ -27,6 +27,6 @@ dogsRouter.delete('/deleteDog/:name', dataDogValidation.deleteDogValidation);
 dogsRouter.post('/addDog', dogs.addDogs);
 dogsRouter.get('/getDogs', dogs.getDogs);
 dogsRouter.put('/editDog/:id', dogs.editDogs);
-dogsRouter.delete('/deleteDog', dogs.deleteDog);
+dogsRouter.delete('/deleteDog/:name', dogs.deleteDog);
 
 module.exports = dogsRouter;
