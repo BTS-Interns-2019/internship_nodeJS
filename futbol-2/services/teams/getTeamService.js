@@ -5,8 +5,10 @@ Logger.level = 'debug;'
 const getTeam = require('../../daos/getTeam');
 
 function getTeamService(id) {
+    Logger.debug(id);
+    
     return new Promise((resolve, reject) => {
-        getTeam()
+        getTeam(id)
         .then((data) => {
             resolve(data)
         })

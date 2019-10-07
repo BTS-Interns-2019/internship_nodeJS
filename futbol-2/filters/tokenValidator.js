@@ -2,13 +2,13 @@
 
 const jwt = require("jsonwebtoken");
 const config = require("../config/constants");
-// const createError = require("http-errors");
-// const logger = require("log4js");
 
-// * @param {Object} req - client request that contains token
-// * @param {Object} res - client response in case toke is invalid or expired
-// * @param {Object} next - method to continue
 
+/** 
+ * @param {Object} req - client request that contains token
+ * @param {Object} res - client response in case toke is invalid or expired
+ * @param {Object} next - method to continue
+*/
 function tokenValidator(user) {
   const tokenData = Object.assign({}, user);
   return new Promise((resolve , reject) => {
@@ -20,18 +20,21 @@ function tokenValidator(user) {
   //   logger.debug('token validator');
 }
 
+/**
+ * @param {string} token recieves a token to be validated
+ * @returns {Promise} Return true if token is valid or the error if not 
+ */
 function validateToken(token) {
-  const toValidate = token.authorization.split(' ')[1];
-  
+  const toValidate = token.authorization.split(' ')[1]; 
   return new Promise((resolve, reject) => {
-    jwt.verify(toValidate, config.TOKEN_SECRET, (error) => {
-      if (error) {
-        reject(false)
+    jwt.verify(toValidate, config.TOKEN_SECRET, (err) => {
+      if (err) {
+        reject(err);
       } else {
         resolve(true);
       }
-    })
-  })
+  });
+  }) 
 }
 
 module.exports = { tokenValidator, validateToken };

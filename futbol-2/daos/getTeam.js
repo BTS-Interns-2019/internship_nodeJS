@@ -16,7 +16,7 @@ function getTeam(id) {
         logger.error(err);
         reject(createError(500, 'Error in DB connection'))
       }
-      connection.query(`SELECT * FROM equipo WHERE id = ${id}`, (err, results) => {
+      connection.query(`SELECT * FROM equipo WHERE idequipo = ${id}`, (err, results) => {
         connection.release();
         if (err) {
           logger.error(err)

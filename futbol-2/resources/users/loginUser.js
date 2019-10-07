@@ -7,7 +7,7 @@ const logger = log4js.getLogger('Resource loginUser.js');
 logger.level = 'debug';
 
 const loginUserService = require('../../services/users/loginUser');
-const userModel = require('../../validationSchemas/user');
+const { loginSchema } = require('../../validationSchemas/user');
 /**
  * @param {Object} req body with user data from request
  * @param {Object} res response for user request with token if the user credentials are correct
@@ -17,7 +17,7 @@ function loginUser(req, res) {
   logger.debug('Login user');
   res.set('Content-Type', 'application/json');
   let valid = new Validator();
-  const validatedlogin = valid.validate(req.body, userModel).errors;
+  const validatedlogin = valid.validate(req.body, loginSchema).errors;
   if (validatedlogin[0]) {
     res.set(400);
     res.send({
@@ -28,6 +28,8 @@ function loginUser(req, res) {
     return loginUserService(req.body)
       .then((token) => {
         logger.debug('Get token successfuly');
+        console.log();
+        
         res.send({ 
           status: 200,
           message: 'Authorization success',
@@ -36,9 +38,9 @@ function loginUser(req, res) {
       })
       .catch((err) => {
         logger.error('Error trying to get token, wrong credentials');
-        res.status(err.statusCode);
+        res.status(err);
         res.send({
-          status: err.statusCode,
+          status: 400,
           message: err.message,
         });
       });
