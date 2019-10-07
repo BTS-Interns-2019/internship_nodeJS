@@ -2,7 +2,7 @@
 
 const bcrypt = require('bcryptjs');
 const userDaos = require('../../daos/userDaos');
-const getToken = require('../../filters/tokenValidator');
+const { getToken } = require('../../filters/tokenValidator');
 
 /**
  * 
@@ -16,7 +16,7 @@ function logIn(body) {
     if(!(email && password)){
       reject('Rquire email and password');
     }
-    userDaos.logIn(email)
+    userDaos.getUserByEmail(email)
     .then((result) => {
       if (!result) {
         reject('email wrong');

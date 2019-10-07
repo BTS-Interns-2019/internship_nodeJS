@@ -22,7 +22,7 @@ function logIn(req, res) {
   .catch((err) => {
     res.send({
       status: 'failure',
-      message: 'There was an error log up the user',
+      message: 'There was an error log in',
       data: err,
     });
   });
