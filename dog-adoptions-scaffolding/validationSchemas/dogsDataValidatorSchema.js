@@ -26,7 +26,7 @@ const dogsDataSchema = {
   required: [
     'name',
     'age',
-    'sexo',
+    'sex',
     'description',
     'imgUrl',
   ],

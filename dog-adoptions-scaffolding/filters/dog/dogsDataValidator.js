@@ -37,6 +37,4 @@ function dogsAddDataValidator(req, res, next) {
   }
 }
 
-module.exports = {
-  dogsAddDataValidator
-}
+module.exports = dogsAddDataValidator;
