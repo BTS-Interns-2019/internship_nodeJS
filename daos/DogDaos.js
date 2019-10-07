@@ -78,15 +78,15 @@ function deleteDog (data) {
         reject('DB connection error');
       };
 
-      connection.query(`SELECT * FROM dogs WHERE name = '${data.name}'` , function (error, results, fields) {
+      connection.query(`SELECT * FROM dogs WHERE id = '${data.id}'` , function (error, results, fields) {
       if(error) { 
           reject(error.message); 
         }
         if(results.length === 0){
-          reject(`ERROR: The name ${data.name} don't exists!`);
+          reject(`ERROR: The id ${data.id} don't exists!`);
         }
 
-      connection.query(`DELETE FROM dogs WHERE name = '${data.name}'`, function(error, results, fields) {
+      connection.query(`DELETE FROM dogs WHERE id = ${data.id}`, function(error, results, fields) {
         connection.release();
 
         if(error) {

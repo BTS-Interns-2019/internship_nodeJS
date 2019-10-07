@@ -20,13 +20,13 @@ dogsRouter.delete('/deleteDog', tokenValidation);
 //Set the schema validation as a middleware
 dogsRouter.post('/addDog', dataDogValidation.newDogValidation);
 dogsRouter.put('/editDog/:id', dataDogValidation.newDogValidation);
-dogsRouter.delete('/deleteDog', dataDogValidation.deleteDogValidation);
+// dogsRouter.delete('/deleteDog', dataDogValidation.deleteDogValidation);
 
 
 //Set router
 dogsRouter.post('/addDog', dogs.addDogs);
 dogsRouter.get('/getDogs', dogs.getDogs);
 dogsRouter.put('/editDog/:id', dogs.editDogs);
-dogsRouter.delete('/deleteDog', dogs.deleteDog);
+dogsRouter.delete('/deleteDog/:id', dogs.deleteDog);
 
 module.exports = dogsRouter;
