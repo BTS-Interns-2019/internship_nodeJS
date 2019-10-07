@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: futbol
+-- Host: 127.0.0.1    Database: adoptions
 -- ------------------------------------------------------
 -- Server version	8.0.17
 
@@ -28,7 +28,7 @@ CREATE TABLE `user` (
   `lastName` varchar(20) NOT NULL,
   `email` varchar(45) NOT NULL,
   `password` varchar(255) NOT NULL,
-  PRIMARY KEY (`iduser`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   UNIQUE KEY `password_UNIQUE` (`password`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
