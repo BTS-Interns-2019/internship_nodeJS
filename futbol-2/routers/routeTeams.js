@@ -6,9 +6,10 @@ const teams = require('../resources/teams/getTeams');
 const team = require('../resources/teams/putTeam');
 const getTeam = require ('../resources/teams/getTeam')
 
-teamsRouter.get('/:id', team);
+teamsRouter.get('/:id', getTeam);
 teamsRouter.get('/', teams);
-teamsRouter.put('/:id', getTeam);
+teamsRouter.put('/', team);
+
 
 
 module.exports = teamsRouter;
