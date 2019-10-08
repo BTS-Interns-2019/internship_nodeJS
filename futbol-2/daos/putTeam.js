@@ -32,7 +32,7 @@ function putTeam(equipo) {
             logger.error(err);
             reject(createError(400, err));
           }
-          resolve(equipo);
+          resolve(results);
         },
       );
     });

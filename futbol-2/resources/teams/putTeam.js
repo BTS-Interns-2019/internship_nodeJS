@@ -32,6 +32,7 @@ function editarEquipo(req, res) {
     });
   } else {
     // return response from DB
+    console.log(req.params.id)
     return equipoServices(req.body)
       .then((teamSettings) => {
         logger.debug('edit the team resource');

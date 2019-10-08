@@ -60,7 +60,7 @@ let metadataValidationData = {
       minLength: 1
     }
   },
-  required: ['idequipo', 'logo', 'name', 'location', 'stadium', 'position', 'points', 'games_played', 'games_won', 'games_tied', 'games_lost', 'goals_in_favor', 'goals_against', 'goal_difference' ],
+  required: ['logo', 'name', 'location', 'stadium', 'position', 'points', 'games_played', 'games_won', 'games_tied', 'games_lost', 'goals_in_favor', 'goals_against', 'goal_difference' ],
 };
 
 module.exports = metadataValidationData;

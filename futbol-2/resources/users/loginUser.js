@@ -7,7 +7,7 @@ const logger = log4js.getLogger('Resource loginUser.js');
 logger.level = 'debug';
 
 const loginUserService = require('../../services/users/loginUser');
-const userModel = require('../../validationSchemas/user');
+const userModel = require('../../validationSchemas/loginValidation');
 /**
  * @param {Object} req body with user data from request
  * @param {Object} res response for user request with token if the user credentials are correct
