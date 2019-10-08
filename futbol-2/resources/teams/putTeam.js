@@ -56,7 +56,7 @@ function editarEquipo(req, res) {
       
       if (validate) {
 
-    return equipoServices(req.body, req.params.id )
+    return equipoServices(req.body )
       .then((teamSettings) => {
         logger.debug('edit the team resource');
         res.send({

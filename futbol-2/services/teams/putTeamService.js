@@ -9,11 +9,10 @@ const editarEquipo = require('../../daos/putTeam');
 /**
  * @return {Promise} promise del signUp
  */
-function editar(body, id) {
-  console.log(id)
+function editar(body) {
   logger.debug('Updating team DB');
     return new Promise((resolve, reject) => {
-     editarEquipo(body, id)
+     editarEquipo(body)
       .then((result) => {
         resolve(result);
       })
