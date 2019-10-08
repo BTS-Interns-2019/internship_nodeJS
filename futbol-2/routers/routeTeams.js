@@ -8,8 +8,6 @@ const getTeam = require ('../resources/teams/getTeam')
 
 teamsRouter.get('/:id', getTeam);
 teamsRouter.get('/', teams);
-teamsRouter.put('/', team);
-
-
+teamsRouter.put('/update/:id', team);
 
 module.exports = teamsRouter;
