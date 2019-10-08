@@ -33,14 +33,30 @@ function editarEquipo(req, res) {
       message: validated.map( msj => msj.stack)
     });
   } else {
-    // return response from DB
+    if (!req.headers.authorization) {
+      res.status(401);
+      res.send({
+        status: 401,
+        message: 'Unathorized',
+      });
+      return;
+    }
+    if (!req.headers.authorization) {
+      res.status(401);
+      res.send({
+        status: 401,
+        message: 'Unathorized',
+      });
+      return;
+    }
+    // calidate token from headers, and gettin a variable from URL
     validateToken(req.headers)
     .then(validate => {
       console.log(validate);
       
       if (validate) {
 
-    return equipoServices(req.body)
+    return equipoServices(req.body, req.params.id )
       .then((teamSettings) => {
         logger.debug('edit the team resource');
         res.send({

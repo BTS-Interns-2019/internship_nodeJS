@@ -12,9 +12,24 @@ function getTeam(req, res) {
   logger.debug('Get the team from service :)');
   res.set('Content-Type', 'application/json');
   logger.debug('Getting team from service');
+  if (!req.headers.authorization) {
+    res.status(401);
+    res.send({
+      status: 401,
+      message: 'Unathorized',
+    });
+    return;
+  }
+  if (!req.headers.authorization) {
+    res.status(401);
+    res.send({
+      status: 401,
+      message: 'Unathorized',
+    });
+    return;
+  }
   validateToken(req.headers)
     .then(validate => {
-      console.log(validate);
       
       if (validate) {
         return getTeamService(req.params.id)

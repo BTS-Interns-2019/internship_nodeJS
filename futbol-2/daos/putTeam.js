@@ -12,7 +12,7 @@ logger.level = 'debug';
  * @param {equipo} equipo object
  * @return {Promise} promise query
  */
-function putTeam(equipo) {
+function putTeam(equipo, id) {
   return new Promise((resolve, reject) => {
     db.getConnection(function (err, connection) {
       if (err) {
@@ -25,7 +25,7 @@ function putTeam(equipo) {
             points = ${equipo.points},games_played = ${equipo.games_played},games_won = ${equipo.games_won},
             games_tied = ${equipo.games_tied}, games_lost = ${equipo.games_lost},
             goals_in_favor = ${equipo.goals_in_favor},goals_against = ${equipo.goals_against},goal_difference = ${equipo.goal_difference}
-            WHERE idequipo = ${equipo.idequipo}`,
+            WHERE idequipo = ${id}`,
         (error, results, fields) => {
           connection.release();
           if (error) {
