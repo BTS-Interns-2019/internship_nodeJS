@@ -21,13 +21,13 @@ dogsRouter.delete('/deleteDog/:name', tokenValidation);
 dogsRouter.post('/addDog', dataDogValidation.newDogValidation);
 dogsRouter.put('/editDog/:id', dataDogValidation.newDogValidation);
 // dogsRouter.delete('/deleteDog', dataDogValidation.deleteDogValidation);
-// dogsRouter.delete('/deleteDog/:name', dataDogValidation.deleteDogValidation);
+dogsRouter.delete('/deleteDog/:name', dataDogValidation.deleteDogValidation);
 
 
 //Set router
 dogsRouter.post('/addDog', dogs.addDogs);
 dogsRouter.get('/getDogs', dogs.getDogs);
 dogsRouter.put('/editDog/:id', dogs.editDogs);
-dogsRouter.delete('/deleteDog/:id', dogs.deleteDog);
+dogsRouter.delete('/deleteDog', dogs.deleteDog);
 
 module.exports = dogsRouter;

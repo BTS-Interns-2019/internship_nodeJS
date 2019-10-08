@@ -1,8 +1,8 @@
 {
     "description": "Validation for delete a dog",
     "properties" : {
-        "id": {
-            "type": "number",
+        "name": {
+            "type": "string",
             "minLength": 1,
             "maxLength": 20,
             "pattern": "\\S+"
