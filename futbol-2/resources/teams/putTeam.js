@@ -1,5 +1,7 @@
 
 'use strict';
+const jwt = require('jsonwebtoken');
+const { validateToken } = require('../../filters/tokenValidator');
 
 const createError = require('http-errors');
 const log4js = require('log4js');
@@ -32,6 +34,12 @@ function editarEquipo(req, res) {
     });
   } else {
     // return response from DB
+    validateToken(req.headers)
+    .then(validate => {
+      console.log(validate);
+      
+      if (validate) {
+
     return equipoServices(req.body)
       .then((teamSettings) => {
         logger.debug('edit the team resource');
@@ -50,7 +58,17 @@ function editarEquipo(req, res) {
           message: 'Error trying to edit team',
         });
       });
-  }
+    }
+  })
+  .catch((error) => {
+    logger.error(error);
+    res.status(401);
+    res.send({
+      status: 401,
+      message: 'Unauthorized user',
+    });
+    
+  })
 }
 
 module.exports = editarEquipo;
