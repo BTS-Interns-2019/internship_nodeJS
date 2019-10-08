@@ -25,6 +25,7 @@ function tokenValidator(user) {
  * @returns {Promise} Return true if token is valid or the error if not 
  */
 function validateToken(token) {
+
   const toValidate = token.authorization.split(' ')[1]; 
   return new Promise((resolve, reject) => {
     jwt.verify(toValidate, config.TOKEN_SECRET, (err) => {
