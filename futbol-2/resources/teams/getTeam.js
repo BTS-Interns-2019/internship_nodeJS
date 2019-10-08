@@ -1,38 +1,50 @@
-'use strict';
-
 const log4js = require('log4js');
-
-const logger = log4js.getLogger('Resource getTeam.js');
-logger.level = 'debug';
+const jsonschema = require('jsonschema');
+const jwt = require('jsonwebtoken');
+const { validateToken } = require('../../filters/tokenValidator');
 
 const getTeamService = require('../../services/teams/getTeamService');
-/**
- * @param {Object} req, client request that contains token
- * @param {Object} res, server's response for client
- * @return {Promise}, fJSON object with all data from teams
- * 
-*/
+const logger = log4js.getLogger('Resource resource/GetTeam');
+logger.level = 'debug';
 
-async function getTeam(req, res) {
-  logger.debug('Getting teams from service');
+function getTeam(req, res) {
+
+  logger.debug('Get the team from service :)');
   res.set('Content-Type', 'application/json');
-  
-  try {
-    logger.debug('Recieving data from teams in DB');
-    const results = await getTeamService(req.params.id);
-    res.send({
-      status: 200,
-      message: 'Get team succesfully',
-      data: results,
-    });
-  } catch (err) {
-    logger.debug('Responding an error, trying to get data from DB');
-    res.status(404);
-    res.send({
-      status: err.statusCode,
-      message: err.statusMessage,
-    });
-  }
-}
+  logger.debug('Getting team from service');
+  validateToken(req.headers)
+    .then(validate => {
+      console.log(validate);
+      
+      if (validate) {
+        return getTeamService(req.params.id)
+          .then((team) => {
+            res.status(200);
+            res.send({
+              status: 200,
+              message: 'Team returned successfuly',
+              data: team,
+            });
+          })
+          .catch((error) => {
+            logger.error(error);
+            res.status(404);
+            res.send({
+              status: 404,
+              message: 'Team not found',
+            });
+          });
+      } 
+    })
+    .catch((error) => {
+      logger.error(error);
+      res.status(401);
+      res.send({
+        status: 401,
+        message: 'Unauthorized user',
+      });
+      
+    })
 
+}
 module.exports = getTeam;

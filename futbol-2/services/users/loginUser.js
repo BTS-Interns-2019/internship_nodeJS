@@ -5,7 +5,7 @@ const logger = log4js.getLogger('Resource loginUser.js');
 logger.level = 'debug';
 
 const login = require('../../daos/getUserLogin');
-const returnToken = require('../../filters/tokenValidator');
+const { tokenValidator }= require('../../filters/tokenValidator');
 
 function loginUser(body) {
     
@@ -13,7 +13,7 @@ function loginUser(body) {
     login(body)
       .then((data) => {
         logger.debug('Waiting for user validation');
-        resolve(returnToken(data));
+        resolve(tokenValidator(data));
       })
       .catch((err) => {
         logger.debug('Sending message for invalid user data');

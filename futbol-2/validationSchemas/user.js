@@ -1,6 +1,6 @@
 'use strict';
 
-let metadataValidationData = {
+const signupSchema = {
   type: 'object',
   properties: {
     first_name: {
@@ -25,4 +25,20 @@ let metadataValidationData = {
   required: ['first_name', 'last_name', 'email', 'password'],
 };
 
-module.exports = metadataValidationData;
+const loginSchema = {
+  type: 'object', 
+  properties: {
+    email: {
+      type: 'string',
+      minLength: 3,
+      format: 'email'
+    },
+    password: {
+      type: 'string',
+      minLength: 6
+    }
+  },
+  additionalProperties: false,
+  required: ['email', 'password'],
+}
+module.exports = { signupSchema, loginSchema } ;
