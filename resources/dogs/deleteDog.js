@@ -17,7 +17,7 @@ function deleteDog(req, res) {
   logger.debug('deleteDog Resource');
 
   // insert the dogs to the database
-  return dogServices.deleteDog(req.params)
+  return dogServices.deleteDog(req.body)
   .then((result) => {
     logger.debug('sending result to deleting a dog with the deleteDog Resource');
             res.set('content-type', 'application/json');

@@ -86,7 +86,7 @@ function deleteDog (data) {
           reject(`ERROR: The name ${data.name} don't exists!`);
         }
 
-      connection.query(`DELETE FROM dogs WHERE name = '${data.name}'`, function(error, results, fields) {
+      connection.query(`DELETE FROM dogs WHERE name = ${data.name}`, function(error, results, fields) {
         connection.release();
 
         if(error) {
